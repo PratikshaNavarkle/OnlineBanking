@@ -26,7 +26,14 @@
 				<div class="form-group">
 				
 				<label for="name">Full Name</label>
-					<input type="text" placeholder="Enter Full Name" name="fullName" class="form-control"  id="name"><br>
+					<input pattern="^[A-Za-z]{1,50}" type="text" placeholder="Enter Full Name" name="fullName" class="form-control"  id="name"><br>
+					<script type="text/javascript">
+					var a=document.getElementById("name");
+					var letters= /^[A-Za-z]+$/;
+					a.oninvalid=function(event){
+						event.target.setCustomValidity('please enter alphabets only. e.g. John ');
+					}
+					</script>
 				</div>
 			
 				<div class="form-group">
