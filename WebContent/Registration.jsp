@@ -31,12 +31,12 @@
 			
 				<div class="form-group">
 				<label for="address">Enter Your Address</label>
-					<input type="text" placeholder="Enter Residential Address" name="address" class="form-control" id="address"><br>
+					<input pattern="^[#.@0-9a-zA-Z\s,-]+$" title="please use #,.,@,- symbols only" type="text" placeholder="Enter Residential Address" name="address" class="form-control" id="address"><br>
 				</div>
 				
 				<div class="form-group">
 				<label for="pin">Enter Pin Code</label>
-					<input type="number" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
+					<input pattern="^[0-9]{6}" title="please enter 6 digits only" type="text" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
 				</div>
 			
 				<div class="form-group">
@@ -96,16 +96,16 @@
 			
 				<div class="form-group">
 				<label for="email">Email </label>
-					<input type="email" placeholder="Email ID" name="email" class="form-control"  id="email"><br>
+					<input pattern="[a-z0-9._%+_]+@[a-z0-9.-]+\.[a-z]{2,}$" title="please enter valid Email" type="email" placeholder="Email ID" name="email" class="form-control"  id="email"><br>
 				</div>
 				
 				<div class="form-group">
 				<label >Account Type</label>
 				<div>
-				<label for="saving" class="radio inline"><input type="radio" name="accType" value="Saving" id="saving">  Saving</label><br>
-				<label for="current" class="radio inline"><input type="radio" name="accType" value="Current" id="current">  Current</label><br>
-				<label for="Rdeposit" class="radio inline"><input type="radio" name="accType" value="Recurring Deposit" id="Rdeposit">  Recurring Deposit</label><br>
-				<label for="Fdeposit" class="radio inline"><input type="radio" name="accType" value="Fix Deposit" id="Fdeposit">  Fix Deposit</label><br>
+				<label for="saving" class="radio-inline"><input type="radio" name="accType" value="Saving" id="saving">Saving</label><br>
+				<label for="current" class="radio-inline"><input type="radio" name="accType" value="Current" id="current">  Current</label><br>
+				<label for="Rdeposit" class="radio-inline"><input type="radio" name="accType" value="Recurring Deposit" id="Rdeposit">  Recurring Deposit</label><br>
+				<label for="Fdeposit" class="radio-inline"><input type="radio" name="accType" value="Fix Deposit" id="Fdeposit">  Fix Deposit</label><br>
 				</div>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create Account" id="submit1">
