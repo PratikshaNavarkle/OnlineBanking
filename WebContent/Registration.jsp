@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Create Account</title>
+<title>Registration</title>
 <link rel="stylesheet" href="Home.css">
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,14 +26,7 @@
 				<div class="form-group">
 				
 				<label for="name">Full Name</label>
-					<input pattern="^[A-Za-z]{1,50}" type="text" placeholder="Enter Full Name" name="fullName" class="form-control"  id="name"><br>
-					<script type="text/javascript">
-					var a=document.getElementById("name");
-					var letters= /^[A-Za-z]+$/;
-					a.oninvalid=function(event){
-						event.target.setCustomValidity('please enter alphabets only. e.g. John ');
-					}
-					</script>
+					<input pattern="^[A-Za-z]{1,50}" title="please enter alphabets only. e.g. John " type="text" placeholder="Enter Full Name" name="fullName" class="form-control"  id="name"><br>
 				</div>
 			
 				<div class="form-group">
