@@ -1,0 +1,80 @@
+@charset "ISO-8859-1";
+*
+{
+	margin: 0;
+	padding: 0;
+}
+body
+{
+	
+	font-family: sans-serif;
+}
+
+#nav-bar
+{
+	
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+.navbar
+{
+	background-color: #f8c427;
+	padding: 0 !important;
+}
+
+.navbar-brand img
+{
+	height: 60px;
+	padding-left: 20px;
+	
+	
+}	
+.navbar-nav li
+{
+	padding: 0 10px;
+	float:right;
+	text-align: left;
+	
+}
+
+#banner{
+	
+	background-color: #f8c427;
+	padding-top: 4px;
+}
+
+.promo-title{
+	
+	font-size: 40px;
+	font-weight: 400;
+	margin-top: 60px;
+}
+	
+.img-fluid{
+	
+	margin-top: 70px;
+}	
+
+/*-----------------services-section---------------*/
+
+
+#services{
+	padding: 80px 0;
+	
+}
+.service-img{
+	
+	width: 100px;
+	margin-top: 20px;
+}	
+
+.services{
+	
+	padding: 20px;
+}
+
+/*------------------------------------login-page---------*/
+
+
+
