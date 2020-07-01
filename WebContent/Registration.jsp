@@ -6,6 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registration</title>
+<script type="text/javascript">
+
+	function nospace(x)
+	{
+		if(x.keyCode == 32)
+			{
+			alert("No Space Allowed");
+			return false;
+			}
+		return true;
+	}
+
+</script>
 <link rel="stylesheet" href="Home.css">
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,22 +34,34 @@
 				<h1>Registration Form</h1>
 				</div>
 				<div class="panel-body">
-				<form action="#">
+				<form action="RegisterServlet" method="post">
 				
 				<div class="form-group">
 				
-				<label for="name">Full Name</label>
-					<input pattern="^[A-Za-z]{1,50}" title="please enter alphabets only. e.g. John " type="text" placeholder="Enter Full Name" name="fullName" class="form-control"  id="name"><br>
+				<label for="name">First Name</label>
+					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Enter Full Name" name="firstName" class="form-control"  id="fname"><br>
+				</div>
+				
+				<div class="form-group">
+				
+				<label for="name">Middle Name</label>
+					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Enter Full Name" name="middleName" class="form-control"  id="mname"><br>
+				</div>
+				
+				<div class="form-group">
+				
+				<label for="name">Last Name</label>
+					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Enter Full Name" name="lastName" class="form-control"  id="lname"><br>
 				</div>
 			
 				<div class="form-group">
 				<label for="address">Enter Your Address</label>
-					<input pattern="^[#.@0-9a-zA-Z\s,-]+$" title="please use #,.,@,- symbols only" type="text" placeholder="Enter Residential Address" name="address" class="form-control" id="address"><br>
+					<input required pattern="^[#.@0-9a-zA-Z\s,-]+$" title="please use #,.,@,- symbols only" type="text" placeholder="Enter Residential Address" name="address" class="form-control" id="address"><br>
 				</div>
 				
 				<div class="form-group">
 				<label for="pin">Enter Pin Code</label>
-					<input pattern="^[0-9]{6}" title="please enter 6 digits only" type="text" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
+					<input required pattern="^[0-9]{6}" title="please enter 6 digits only" type="text" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
 				</div>
 			
 				<div class="form-group">
@@ -96,7 +121,22 @@
 			
 				<div class="form-group">
 				<label for="email">Email </label>
-					<input pattern="[a-z0-9._%+_]+@[a-z0-9.-]+\.[a-z]{2,}$" title="please enter valid Email" type="email" placeholder="Email ID" name="email" class="form-control"  id="email"><br>
+					<input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="please enter valid Email" type="email" placeholder="Email ID" name="email" class="form-control"  id="email" onkeydown="return nospace(event)"><br>
+				</div>
+				
+				<div class="form-group">
+				<label >Gender</label>
+				
+				<div>
+				<label for="male" class="radio-inline"><input type="radio" name="gender" value="Male" id="male"> Male</label><br>
+				<label for="female" class="radio-inline"><input type="radio" name="gender" value="Female" id="female"> Female</label><br>
+				<label for="others" class="radio-inline"><input type="radio" name="gender" value="Others" id="others"> Others</label><br>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label for="email">Date of Birth(mm/dd/yyyy) </label>
+					<input required type="date" placeholder="mm/dd/yyyy" name="dob" class="form-control"  id="dob" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
 				</div>
 				
 				<div class="form-group">
@@ -108,8 +148,9 @@
 				<label for="Fdeposit" class="radio-inline"><input type="radio" name="accType" value="Fix Deposit" id="Fdeposit">  Fix Deposit</label><br>
 				</div>
 				</div>
-				<input type="submit" class="btn btn-primary" value="Create Account" id="submit1">
-				<input type="button" class="btn btn-primary" value="Cancel" id="submit2">
+				<input type="submit" class="btn btn-primary" value="Create Account" id="submit1" onclick="success()">
+				
+				<input type="submit" class="btn btn-primary" value="Cancel" id="submit2" onclick="location.href='Home.jsp'">
 				</form>
 				</div>
 				<div class="panel-footer text-right">
