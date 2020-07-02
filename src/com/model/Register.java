@@ -89,13 +89,13 @@ public class Register
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	/*public Date getDob() {
+/*	public Date getDob() {
 		return dob;
 	}
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	*/
+*/
 	public long getContact() {
 		return contact;
 	}

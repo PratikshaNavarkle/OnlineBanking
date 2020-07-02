@@ -12,7 +12,7 @@
 		<script src="jquery-ui.js"></script>
 		<script>
 			$(function() {
-		        	$( "#bday" ).datepicker();
+		        	$( "#datepicker" ).datepicker();
 			});
 		</script>
 	
@@ -146,7 +146,7 @@
 				
 				<div class="form-group">
 				<label for="dob">Date of Birth(dd/mm/yyyy) </label>
-					<input required type="text" placeholder="mm/dd/yyyy" name="dob" class="form-control"  id="dob" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
+					<input required type="text" placeholder="mm/dd/yyyy" name="datepicker" class="form-control"  id="datepicker" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
 				</div>
 				
 				<div class="form-group">

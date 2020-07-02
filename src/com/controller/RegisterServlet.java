@@ -2,6 +2,9 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,9 +19,6 @@ import javax.servlet.http.HttpSession;
 import com.Dao.Database;
 import com.model.Register;
 
-/**
- * Servlet implementation class RegisterServlet
- */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -47,48 +47,58 @@ public class RegisterServlet extends HttpServlet {
 		String state=request.getParameter("state");
 		String email=request.getParameter("email");
 		String gender=request.getParameter("gender");
-		String dob=request.getParameter("dob");
+		String dob=request.getParameter("datepicker");
 		String contactNo=request.getParameter("contact");
 		String accountType=request.getParameter("accType");
 		
 		//convert into respective data type
 		int postalCode = Integer.parseInt(pinCode);
 		long contact= Long.parseLong(contactNo);
-		/* 
-		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy");
-		Date date = null;
-		try {
-			date = formater.parse(dob);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		/*
-		pw.println(date);
 		
-		pw.println("first name\t"+firstName);
-		pw.println("middle name\t"+middleName);
-		pw.println("last name\t"+lastName);
-		pw.println("Address\t"+address);
-		pw.println("pinCode\t"+postalCode);
-		pw.println("city\t"+city);
-		pw.println("state\t"+state);
-		pw.println("email\t"+email);
-		pw.println("Gender\t"+gender);
-		pw.println("Date of birth\t"+date);
-		pw.println("Contact no\t"+contact);
-		pw.println("Account Type\t"+accountType);
-		*/
+		java.util.Date da=null;
+	    java.text.DateFormat format = new java.text.SimpleDateFormat("dd/MM/yyyy");
+	    try {
+	        //java.util.Date d = df.parse(Date);
+	    	da = format.parse(dob);
+	    } 
+	    catch (ParseException ex) {
+	        //Logger.getLogger(ReserveServlet.class.getName()).log(Level.SEVERE, null, ex);
+	        System.out.println(ex);
+	    }
 		
 		int i=0;
 		Register r=new Register(firstName, middleName, lastName, address, postalCode, city, state, email, gender, contact, accountType);
-		Database d=new Database();
-		try
-		{
-			System.out.println("Before insert");
-			i=d.insertData(r);
-			System.out.println("After insert");
+			
+			try{
+				Class.forName("oracle.jdbc.OracleDriver");
+				//step2 connection to DB
+				Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE","SYSTEM","Pr@tiksha");
+			PreparedStatement ps;
+			ps=con.prepareStatement("insert into Register values(?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps.setString(1, r.getFirstName());
+			ps.setString(2, r.getMiddleName());
+			ps.setString(3, r.getLastName());
+			ps.setString(4, r.getAddress());
+			ps.setInt(5, r.getPin());
+			ps.setString(6, r.getCity());
+			ps.setString(7, r.getState());
+			ps.setString(8, r.getEmail());
+			ps.setString(9, r.getGender());
+			da= new java.sql.Date(da.getTime());
+	        ps.setDate(10, (java.sql.Date) da);
+			ps.setLong(11, r.getContact());
+			ps.setString(12, r.getAccType());
+			
+
+			i=ps.executeUpdate();
+			con.close();
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+			
+
 			if(i>0)
 			{
 				System.out.println("Regisration is Successful....!!");
@@ -96,11 +106,7 @@ public class RegisterServlet extends HttpServlet {
 			}
 			
 		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
-		
+	
 	}
 
-}
+

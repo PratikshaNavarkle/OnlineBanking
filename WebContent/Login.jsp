@@ -51,7 +51,7 @@ body {
 	</form>
 
 	<h3 align="center">
-		New here?<a href="Register.jsp">Sign-up</a>
+		New here?<a href="Registration.jsp">Sign-up</a>
 	</h3>
 </body>
 </html>
