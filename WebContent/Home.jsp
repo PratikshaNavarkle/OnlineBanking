@@ -27,10 +27,10 @@
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" href="Login.jsp">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sign up</a>
+        <a class="nav-link" href="Registration.jsp">Sign up</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">About us</a>

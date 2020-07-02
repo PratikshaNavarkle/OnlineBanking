@@ -6,6 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registration</title>
+<link rel="stylesheet" href="jquery-ui.css" />
+		<script type="text/javascript" src="foodies.js" />
+		<script src="jquery-1.8.2.js"></script>
+		<script src="jquery-ui.js"></script>
+		<script>
+			$(function() {
+		        	$( "#bday" ).datepicker();
+			});
+		</script>
+	
 <script type="text/javascript">
 
 	function nospace(x)
@@ -39,19 +49,19 @@
 				<div class="form-group">
 				
 				<label for="name">First Name</label>
-					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Enter Full Name" name="firstName" class="form-control"  id="fname"><br>
+					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="First Name" name="firstName" class="form-control"  id="fname"><br>
 				</div>
 				
 				<div class="form-group">
 				
 				<label for="name">Middle Name</label>
-					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Enter Full Name" name="middleName" class="form-control"  id="mname"><br>
+					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Middle Name" name="middleName" class="form-control"  id="mname"><br>
 				</div>
 				
 				<div class="form-group">
 				
 				<label for="name">Last Name</label>
-					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Enter Full Name" name="lastName" class="form-control"  id="lname"><br>
+					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Last Name" name="lastName" class="form-control"  id="lname"><br>
 				</div>
 			
 				<div class="form-group">
@@ -61,11 +71,11 @@
 				
 				<div class="form-group">
 				<label for="pin">Enter Pin Code</label>
-					<input required pattern="^[0-9]{6}" title="please enter 6 digits only" type="text" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
+					<input required pattern="^[0-9]{6}" title="please enter 6 digits only" type="number11" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
 				</div>
 			
 				<div class="form-group">
-				<label for="city">City </label> <select name="city" id="city" style="width: 400px">
+				<label for="city">City </label> <select name="city" id="city" style="width: 400px" required>
 			<option value="Ahmadnagar">Ahmadnagar</option>
 			<option value="Akola">Akola</option>
 			<option value="Amravati">Amravati</option>
@@ -97,7 +107,7 @@
 				</div>
 				
 				<div class="form-group">
-				<label for="state">State </label><select name="state" id="state" style="width: 400px">
+				<label for="state">State </label><select name="state" id="state" style="width: 400px" required>
 			<option value="Andhra Pradesh">Andhra Pradesh</option>
 			<option value="Arunachal Pradesh">Arunachal Pradesh</option>
 			<option value="Assam">Assam</option>
@@ -135,8 +145,13 @@
 				</div>
 				
 				<div class="form-group">
-				<label for="email">Date of Birth(mm/dd/yyyy) </label>
-					<input required type="date" placeholder="mm/dd/yyyy" name="dob" class="form-control"  id="dob" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
+				<label for="dob">Date of Birth(dd/mm/yyyy) </label>
+					<input required type="text" placeholder="mm/dd/yyyy" name="dob" class="form-control"  id="dob" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
+				</div>
+				
+				<div class="form-group">
+				<label for="contact">Contact Number</label>
+					<input required pattern="^[7-9]{1}[0-9]{9}" title="please enter 10 digits only" type="text" placeholder="+91" name="contact" class="form-control" id="contact"><br>
 				</div>
 				
 				<div class="form-group">
@@ -160,5 +175,6 @@
 
 		</div>
 	</div>
+	
 </body>
 </html>
