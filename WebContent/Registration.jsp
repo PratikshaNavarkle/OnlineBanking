@@ -12,7 +12,10 @@
 		<script src="jquery-ui.js"></script>
 		<script>
 			$(function() {
-		        	$( "#datepicker" ).datepicker();
+		        	$( "#datepicker" ).datepicker({
+		        		dateFormat: "dd-mm-yyyy",
+		        		changeYear: true
+		        	});
 			});
 		</script>
 	
@@ -49,29 +52,29 @@
 				<div class="form-group">
 				
 				<label for="name">First Name</label>
-					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="First Name" name="firstName" class="form-control"  id="fname"><br>
+					<input required autocomplete="off" onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="First Name" name="firstName" class="form-control"  id="fname"><br>
 				</div>
 				
 				<div class="form-group">
 				
 				<label for="name">Middle Name</label>
-					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Middle Name" name="middleName" class="form-control"  id="mname"><br>
+					<input required autocomplete="off" onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Middle Name" name="middleName" class="form-control"  id="mname"><br>
 				</div>
 				
 				<div class="form-group">
 				
 				<label for="name">Last Name</label>
-					<input required onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Last Name" name="lastName" class="form-control"  id="lname"><br>
+					<input required autocomplete="off" onkeydown="return nospace(event)" pattern="^[A-Za-z]*$" title="please enter alphabets only. e.g. John " type="text" placeholder="Last Name" name="lastName" class="form-control"  id="lname"><br>
 				</div>
 			
 				<div class="form-group">
 				<label for="address">Enter Your Address</label>
-					<input required pattern="^[#.@0-9a-zA-Z\s,-]+$" title="please use #,.,@,- symbols only" type="text" placeholder="Enter Residential Address" name="address" class="form-control" id="address"><br>
+					<input required autocomplete="off" pattern="^[#.@0-9a-zA-Z\s,-]+$" title="please use #,.,@,- symbols only" type="text" placeholder="Enter Residential Address" name="address" class="form-control" id="address"><br>
 				</div>
 				
 				<div class="form-group">
 				<label for="pin">Enter Pin Code</label>
-					<input required pattern="^[0-9]{6}" title="please enter 6 digits only" type="number11" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
+					<input required autocomplete="off" pattern="^[0-9]{6}" title="please enter 6 digits only" type="number11" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
 				</div>
 			
 				<div class="form-group">
@@ -131,7 +134,7 @@
 			
 				<div class="form-group">
 				<label for="email">Email </label>
-					<input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="please enter valid Email" type="email" placeholder="Email ID" name="email" class="form-control"  id="email" onkeydown="return nospace(event)"><br>
+					<input autocomplete="off" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="please enter valid Email" type="email" placeholder="Email ID" name="email" class="form-control"  id="email" onkeydown="return nospace(event)"><br>
 				</div>
 				
 				<div class="form-group">
@@ -146,12 +149,12 @@
 				
 				<div class="form-group">
 				<label for="dob">Date of Birth(dd/mm/yyyy) </label>
-					<input required type="text" placeholder="mm/dd/yyyy" name="datepicker" class="form-control"  id="datepicker" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
+					<input autocomplete="off" required type="text" placeholder="dd/mm/yyyy" name="datepicker" class="form-control"  id="datepicker" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
 				</div>
 				
 				<div class="form-group">
 				<label for="contact">Contact Number</label>
-					<input required pattern="^[7-9]{1}[0-9]{9}" title="please enter 10 digits only" type="text" placeholder="+91" name="contact" class="form-control" id="contact"><br>
+					<input autocomplete="off" required pattern="^[7-9]{1}[0-9]{9}" title="please enter 10 digits only" type="text" placeholder="+91" name="contact" class="form-control" id="contact"><br>
 				</div>
 				
 				<div class="form-group">
@@ -164,6 +167,7 @@
 				</div>
 				</div>
 				<input type="submit" class="btn btn-primary" value="Create Account" id="submit1" onclick="success()">
+				
 				
 				<input type="submit" class="btn btn-primary" value="Cancel" id="submit2" onclick="location.href='Home.jsp'">
 				</form>

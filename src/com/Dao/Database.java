@@ -28,6 +28,24 @@ public class Database
 		con=DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE","SYSTEM","Pr@tiksha");
 	}
 
-	
+	public void getProfile(int id)
+	{
+		
+		try
+		{
+			myConnection();
+			ps=con.prepareStatement("select * from Register where contact=?");
+			ps.setLong(1, id);
+			if(rs.next())
+			{
+				rs.getString(1);
+			}
+			ps.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
 
 }

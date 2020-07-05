@@ -23,7 +23,7 @@ body {
 		<p class="one">Welcome to ABC Bank Login.
 	</h1>
 	<hr>
-	<form action="#" method="post" name="myform">
+	<form action="LoginServlet" method="post" name="myform">
 		<table align="center" id="table2" class="table table-hover table-sm" style="width: AUTO">
 
 			<tr class="table-warning">
@@ -43,7 +43,7 @@ body {
 			<tr>
 				<td id="login" align="right"><input type="submit" button
 					type="button" class="btn btn btn-info" value="Login"
-					onclick="return validate()">
+					>
 					</button>
 			</tr>
 		</table>

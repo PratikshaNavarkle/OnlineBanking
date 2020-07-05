@@ -5,9 +5,12 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,10 +25,7 @@ import com.model.Register;
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	
     public RegisterServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		System.out.println("In Register Servlet");
+		//System.out.println("In Register Servlet");
 		HttpSession session= request.getSession();
 		PrintWriter pw=response.getWriter();
 		
@@ -65,16 +65,27 @@ public class RegisterServlet extends HttpServlet {
 	        //Logger.getLogger(ReserveServlet.class.getName()).log(Level.SEVERE, null, ex);
 	        System.out.println(ex);
 	    }
-		
 		int i=0;
+		
 		Register r=new Register(firstName, middleName, lastName, address, postalCode, city, state, email, gender, contact, accountType);
-			
+			session.setAttribute("register", r);
 			try{
 				Class.forName("oracle.jdbc.OracleDriver");
 				//step2 connection to DB
 				Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE","SYSTEM","Pr@tiksha");
-			PreparedStatement ps;
-			ps=con.prepareStatement("insert into Register values(?,?,?,?,?,?,?,?,?,?,?,?)");
+				Long nextId=0L;
+				PreparedStatement ps;
+				ResultSet rs;
+				String sql="select accNum.nextval from Registerdata";
+				ps=con.prepareStatement(sql);
+				rs=ps.executeQuery();
+				if(rs.next())
+				{
+					nextId=rs.getLong(1);
+				}
+				
+			
+			ps=con.prepareStatement("insert into Register values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, r.getFirstName());
 			ps.setString(2, r.getMiddleName());
 			ps.setString(3, r.getLastName());
@@ -88,6 +99,9 @@ public class RegisterServlet extends HttpServlet {
 	        ps.setDate(10, (java.sql.Date) da);
 			ps.setLong(11, r.getContact());
 			ps.setString(12, r.getAccType());
+			ps.setLong(13, nextId);
+			
+			System.out.println("Account number\t"+nextId);
 			
 
 			i=ps.executeUpdate();

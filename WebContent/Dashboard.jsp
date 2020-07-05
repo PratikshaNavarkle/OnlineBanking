@@ -1,14 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="java.sql.*"%>
+    <%@page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard design</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 <link rel="stylesheet" href="dash.css">
 </head>
 <body>
+
+<%
+
+	if(session.getAttribute("username")==null && session.getAttribute("pass")==null)
+	{
+	response.sendRedirect("Login.jsp");	
+	}
+
+%>
 
 <input type="checkbox" id="check">
 
@@ -38,10 +50,10 @@
 		<h4>User</h4>
 </center>
 <a href="#"><i class="fa fa-home"></i><span>Home</span></a>
-<a href="#"><i class="fa fa-id-card"></i><span>My Account</span></a>
-<a href="#"><i class="fa fa-info-circle"></i><span>FAQs</span></a>
+<a href="MyAccount.jsp" id="button"><i class="fa fa-id-card"></i><span>My Account</span></a>
+<a href="faq.jsp"><i class="fa fa-info-circle"></i><span>FAQs</span></a>
 <a href="#"><i class="fa fa-cog"></i><span>Account Settings</span></a>
-
+<a href="#"><i class="fa fa-history"></i><span>Account Statement</span></a>
 
 
 <div id="loan">
@@ -58,6 +70,8 @@
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX7nC3HLvfPLu_upVd6Osus_ShWTVRAYjugA&usqp=CAU" class="service-img3">
 <h4>Deposit Schemes</h4>
 <p>ABC is one of the safest banks to deposit your money.Check for "Deposit" in drop-down list to learn more! </p>
+</div>
+
 </div>
 </body>
 </html>
