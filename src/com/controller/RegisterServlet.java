@@ -2,16 +2,14 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,108 +17,137 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.Dao.Database;
-import com.model.Register;
+import com.dao.RegisterDao;
+import com.model.AccountDetails;
+import com.model.AddressDetails;
+import com.model.DocumentDetails;
+import com.model.PersonalDetails;
+import com.model.Regsiter;
+import com.security.EncryptionDecryption;
+import com.security.PasswordGeneration;
 
+/**
+ * Servlet implementation class RegisterServlet
+ */
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-    public RegisterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	public RegisterServlet() {
+		super();
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		//System.out.println("In Register Servlet");
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		HttpSession session= request.getSession();
 		PrintWriter pw=response.getWriter();
-		
+		int i=0;
+
 		//read data from user
 		String firstName=request.getParameter("firstName");
 		String middleName=request.getParameter("middleName");
 		String lastName=request.getParameter("lastName");
-		String address=request.getParameter("address");
-		String pinCode = request.getParameter("pin");
-		String city=request.getParameter("city");
-		String state=request.getParameter("state");
 		String email=request.getParameter("email");
+		
 		String gender=request.getParameter("gender");
 		String dob=request.getParameter("datepicker");
 		String contactNo=request.getParameter("contact");
+		String address=request.getParameter("address");
+		String locality=request.getParameter("locality");
+		String landmark=request.getParameter("landmark");
+		String city=request.getParameter("city");
+		String state=request.getParameter("state");
+		String pinCode = request.getParameter("pin");
 		String accountType=request.getParameter("accType");
-		
+		String panNo= request.getParameter("panNo");
+		String adhar=request.getParameter("aadharNo");
+
+		//request.setAttribute("selectedCity", city);
+
+		//listcity(request, response);
+
 		//convert into respective data type
 		int postalCode = Integer.parseInt(pinCode);
 		long contact= Long.parseLong(contactNo);
-		
-		java.util.Date da=null;
-	    java.text.DateFormat format = new java.text.SimpleDateFormat("dd/MM/yyyy");
-	    try {
-	        //java.util.Date d = df.parse(Date);
-	    	da = format.parse(dob);
-	    } 
-	    catch (ParseException ex) {
-	        //Logger.getLogger(ReserveServlet.class.getName()).log(Level.SEVERE, null, ex);
-	        System.out.println(ex);
-	    }
-		int i=0;
-		
-		Register r=new Register(firstName, middleName, lastName, address, postalCode, city, state, email, gender, contact, accountType);
-			session.setAttribute("register", r);
-			try{
-				Class.forName("oracle.jdbc.OracleDriver");
-				//step2 connection to DB
-				Connection con=DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE","SYSTEM","Pr@tiksha");
-				Long nextId=0L;
-				PreparedStatement ps;
-				ResultSet rs;
-				String sql="select accNum.nextval from Registerdata";
-				ps=con.prepareStatement(sql);
-				rs=ps.executeQuery();
-				if(rs.next())
-				{
-					nextId=rs.getLong(1);
-				}
-				
-			
-			ps=con.prepareStatement("insert into Register values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			ps.setString(1, r.getFirstName());
-			ps.setString(2, r.getMiddleName());
-			ps.setString(3, r.getLastName());
-			ps.setString(4, r.getAddress());
-			ps.setInt(5, r.getPin());
-			ps.setString(6, r.getCity());
-			ps.setString(7, r.getState());
-			ps.setString(8, r.getEmail());
-			ps.setString(9, r.getGender());
-			da= new java.sql.Date(da.getTime());
-	        ps.setDate(10, (java.sql.Date) da);
-			ps.setLong(11, r.getContact());
-			ps.setString(12, r.getAccType());
-			ps.setLong(13, nextId);
-			
-			System.out.println("Account number\t"+nextId);
-			
+		//long panNo= Long.parseLong(pan);
+		long adhaarNo= Long.parseLong(adhar);
 
-			i=ps.executeUpdate();
-			con.close();
-			}
-			catch(Exception e)
-			{
-				System.out.println(e);
-			}
-			
+		//string to date conversion
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date date=null;
+		try {
+			date = formatter.parse(dob);
+		} 
+		catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//System.out.println("Util date\t"+date);
+		//util date to sql date
+		java.sql.Date sDate = new java.sql.Date(date.getTime());
+		DateFormat df = new SimpleDateFormat("dd/MM/YYYY - hh:mm:ss");
+		//System.out.println("SQL date\t"+sDate);
 
+
+		//system generated password
+		String password=null;
+		PasswordGeneration pg= new PasswordGeneration();
+		String pass=pg.password();
+		//System.out.println("System generated password\t"+pass);
+		request.setAttribute("password", pass);
+		EncryptionDecryption ed=new EncryptionDecryption();
+		//password encryption
+		try
+		{
+			SecretKey key = ed.generateKey("AES");
+			Cipher chipher;
+			chipher = Cipher.getInstance("AES");
+			
+			byte[] encryptedData = ed.encrypt(pass, key, chipher);
+			password = new String(encryptedData);
+			//System.out.println("Encrypted password\t"+password);
+			String decrypted = ed.decrypt(encryptedData, key, chipher);
+			//System.out.println("Decrypted\t"+decrypted);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		PersonalDetails p =  new PersonalDetails(firstName, middleName, lastName, email, gender, sDate, contact);
+		AddressDetails a = new AddressDetails(address, locality, landmark, city, state, postalCode);
+		AccountDetails acc = new AccountDetails(accountType, email, password);
+		DocumentDetails d= new DocumentDetails(panNo, adhaarNo);
+
+		Regsiter r=new Regsiter(p, a, acc, d);
+		RegisterDao rd=new RegisterDao();
+		try
+		{
+			i=rd.addRegister(r);
 			if(i>0)
 			{
-				System.out.println("Regisration is Successful....!!");
-				response.sendRedirect("Home.jsp");
+				System.out.println("Registration Successful...!!");
+				request.setAttribute("email", email);
+				RequestDispatcher rs=request.getRequestDispatcher("EmailServlet");
+				//System.out.println("After RS");
+				rs.forward(request, response);
+				//System.out.println("After forward");
+				
 			}
-			
+			else
+			{
+				System.out.println("Registration Failed");
+			}
 		}
-	
+		catch(Exception e)
+		{
+			System.out.println("In register Servlet\t"+e);
+		}
+
 	}
 
-
+}

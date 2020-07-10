@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Registration</title>
+<link rel="stylesheet" href="Style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="jquery-ui.css" />
 		<script type="text/javascript" src="foodies.js" />
 		<script src="jquery-1.8.2.js"></script>
@@ -40,6 +45,37 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<section id="nav-bar">
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#"><img src="https://www.freepnglogos.com/uploads/abc-png-logo/play-abc-logo-png-22.png"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Login.jsp">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Registration.jsp">Sign up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+</section>
+
 	<div class="container">
 		<div class="row col-md-6  col-md-offset-3">
 			<div class="panel panel-primary">
@@ -47,7 +83,7 @@
 				<h1>Registration Form</h1>
 				</div>
 				<div class="panel-body">
-				<form action="RegisterServlet" method="post">
+				<form action="RegisterServlet">
 				
 				<div class="form-group">
 				
@@ -68,13 +104,49 @@
 				</div>
 			
 				<div class="form-group">
+				<label for="email">Email </label>
+					<input autocomplete="off" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="please enter valid Email" type="email" placeholder="Email ID" name="email" class="form-control"  id="email" onkeydown="return nospace(event)"><br>
+				</div>
+				
+				<div class="form-group">
+				<label >Gender</label>
+				
+				<div>
+				<label for="male" class="radio-inline"><input type="radio" name="gender" value="Male" id="male"> Male</label><br>
+				<label for="female" class="radio-inline"><input type="radio" name="gender" value="Female" id="female"> Female</label><br>
+				<label for="others" class="radio-inline"><input type="radio" name="gender" value="Others" id="others"> Others</label><br>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label for="dob">Date of Birth(dd/mm/yyyy) </label>
+					<input autocomplete="off" required type="text" placeholder="dd/mm/yyyy" name="datepicker" class="form-control"  id="datepicker" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
+				</div>
+				
+				<div class="form-group">
+				<label for="contact">Contact Number</label>
+					<input autocomplete="off" required pattern="^[7-9]{1}[0-9]{9}" title="please enter 10 digits only" type="text" placeholder="+91" name="contact" class="form-control" id="contact"><br>
+				</div>
+					
+			
+				<div class="form-group">
 				<label for="address">Enter Your Address</label>
 					<input required autocomplete="off" pattern="^[#.@0-9a-zA-Z\s,-]+$" title="please use #,.,@,- symbols only" type="text" placeholder="Enter Residential Address" name="address" class="form-control" id="address"><br>
 				</div>
 				
 				<div class="form-group">
+				<label for="address">Locality</label>
+					<input required autocomplete="off" pattern="^[A-Za-z\s]*$" title="please use alphabets only" type="text" placeholder="Area" name="locality" class="form-control" id="locality"><br>
+				</div>
+				
+				<div class="form-group">
+				<label for="address">Landmark</label>
+					<input required autocomplete="off" pattern="^[A-Za-z\s]*$" title="please use alphabets only" type="text" placeholder="Landmark" name="landmark" class="form-control" id="landmark"><br>
+				</div>
+				
+				<div class="form-group">
 				<label for="pin">Enter Pin Code</label>
-					<input required autocomplete="off" pattern="^[0-9]{6}" title="please enter 6 digits only" type="number11" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
+					<input required autocomplete="off" onkeydown="return nospace(event)" pattern="^[0-9]{6}" title="please enter 6 digits only" type="number" placeholder="Pin Code" name="pin" class="form-control" id="pin"><br>
 				</div>
 			
 				<div class="form-group">
@@ -132,30 +204,6 @@
 		</select><br> 
 				</div>
 			
-				<div class="form-group">
-				<label for="email">Email </label>
-					<input autocomplete="off" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="please enter valid Email" type="email" placeholder="Email ID" name="email" class="form-control"  id="email" onkeydown="return nospace(event)"><br>
-				</div>
-				
-				<div class="form-group">
-				<label >Gender</label>
-				
-				<div>
-				<label for="male" class="radio-inline"><input type="radio" name="gender" value="Male" id="male"> Male</label><br>
-				<label for="female" class="radio-inline"><input type="radio" name="gender" value="Female" id="female"> Female</label><br>
-				<label for="others" class="radio-inline"><input type="radio" name="gender" value="Others" id="others"> Others</label><br>
-				</div>
-				</div>
-				
-				<div class="form-group">
-				<label for="dob">Date of Birth(dd/mm/yyyy) </label>
-					<input autocomplete="off" required type="text" placeholder="dd/mm/yyyy" name="datepicker" class="form-control"  id="datepicker" onkeydown="return nospace(event)" min="1930-01-01" max="2020-01-01"><br>
-				</div>
-				
-				<div class="form-group">
-				<label for="contact">Contact Number</label>
-					<input autocomplete="off" required pattern="^[7-9]{1}[0-9]{9}" title="please enter 10 digits only" type="text" placeholder="+91" name="contact" class="form-control" id="contact"><br>
-				</div>
 				
 				<div class="form-group">
 				<label >Account Type</label>
@@ -166,8 +214,18 @@
 				<label for="Fdeposit" class="radio-inline"><input type="radio" name="accType" value="Fix Deposit" id="Fdeposit">  Fix Deposit</label><br>
 				</div>
 				</div>
-				<input type="submit" class="btn btn-primary" value="Create Account" id="submit1" onclick="success()">
 				
+				<div class="form-group">
+				<label for="pin">Aadhaar Number</label>
+					<input required autocomplete="off" pattern="^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$" title="please enter 12 digits only" type="number" placeholder="123412341234" name="aadharNo" class="form-control" id="aadharNo"><br>
+				</div>
+				
+				<div class="form-group">
+				<label for="pin">PAN Number</label>
+					<input required autocomplete="off" pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}" title="only uppercase letters and digits are allowed" type="text" placeholder="ABCDE1234F" name="panNo" class="form-control" id="panNo"><br>
+				</div>
+				
+				<input type="submit" class="btn btn-primary" value="Create Account" id="submit1" onclick="success()">
 				
 				<input type="submit" class="btn btn-primary" value="Cancel" id="submit2" onclick="location.href='Home.jsp'">
 				</form>
