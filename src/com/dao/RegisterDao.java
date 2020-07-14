@@ -5,9 +5,15 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.model.AccountDetails;
+import com.model.AddressDetails;
+import com.model.DocumentDetails;
+import com.model.PersonalDetails;
 import com.model.Regsiter;
 import com.service.RegisterInterface;
 
@@ -19,7 +25,7 @@ public class RegisterDao implements RegisterInterface
 	PreparedStatement ps;
 	Statement statement;
 	ResultSet rs;
-	
+
 	public void myConnection() throws Exception
 	{
 		final String driver="oracle.jdbc.OracleDriver";
@@ -32,18 +38,19 @@ public class RegisterDao implements RegisterInterface
 		con=DriverManager.getConnection(url,username,password);
 		//System.out.println("Connection :"+con);
 	}
-	
+
 	@Override
-	public int addRegister(Regsiter r)
+	public long addRegister(Regsiter r)
 	{
 		int i=0;
+		Long accNo=100000000000L;
 		//DBConnection d=new DBConnection();
 		//d.myConnection();
 		try 
 		{
 			myConnection();
 			//System.out.println("Before sequence");
-			Long accNo=0L;
+			
 			//String sql="select accNo.nextval from Register";
 			//System.out.println("first");
 			ps=con.prepareStatement("select accNo.nextval from Register");
@@ -56,7 +63,8 @@ public class RegisterDao implements RegisterInterface
 				accNo=rs.getLong(1);
 				//System.out.println("5");
 			}
-			
+			r.getP().setAccNo(accNo);
+			System.out.println("Account number is set to\t"+r.getP().getAccNo());
 			//System.out.println("After sequence");
 			ps=con.prepareStatement("insert into Register values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			//System.out.println("Enter cust id, first name and last name");
@@ -99,35 +107,131 @@ public class RegisterDao implements RegisterInterface
 		{
 			System.out.println("Inside Insert\t"+e);
 		}
-		
+		finally
+		{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
-		return i;
+		return accNo;
 	}
 
 	@Override
 	public List<Regsiter> getAllRegister() 
 	{
-		
+
 		return null;
 	}
 
 	@Override
-	public void deleteRegister(long accNo) 
+	public int deleteRegister(long accNo) 
+	{
+		int i=0;
+		try
+		{
+			myConnection();
+			//System.out.println("1");
+			ps=con.prepareStatement("delete from Register where accno=?");
+			//System.out.println("2");
+			ps.setLong(1, accNo);
+			//System.out.println("3");
+			
+			i=ps.executeUpdate();
+			
+			//System.out.println("Value of i\t"+i);
+			//System.out.println("4");
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println("In Register Delete\t"+e);
+		}
+		finally
+		{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return i;
+	}
+
+	@Override
+	public int searchRegister(long accNo) 
 	{
 		
-		
-	}
+		int i=0;
+		try
+		{
+			String sql="select * from Register where accNo=?";
+			ps=con.prepareStatement(sql);
+			ps.setLong(1, accNo);
+			rs=ps.executeQuery();
+			List<PersonalDetails> alist=new ArrayList<PersonalDetails>();
+			PersonalDetails p=new PersonalDetails(0, null, null, null, null, null, null, 0);
+			AddressDetails a=new AddressDetails(0, null, null, null, null, null, 0);
+			AccountDetails acc=new AccountDetails(0, null, null, null);
+			DocumentDetails d= new DocumentDetails(0, null, 0);
+			if(rs.next())
+			{
+				
+				p.setAccNo(rs.getLong(1));
+				p.setFirstName(rs.getString(2));
+				p.setMiddleName(rs.getString(3));
+				p.setLastName(rs.getString(4));
+				p.setEmail(rs.getString(5));
+				p.setGender(rs.getString(6));
+				p.setDob(rs.getDate(7));
+				p.setContact(rs.getLong(8));
+				a.setAccNo(rs.getLong(1));
+				a.setAddress(rs.getString(9));
+				a.setLocality(rs.getString(10));
+				a.setLandmark(rs.getString(11));
+				a.setCity(rs.getString(12));
+				a.setState(rs.getString(13));
+				a.setPinCode(rs.getInt(14));
+				acc.setAccNo(rs.getLong(1));
+				acc.setAccType(rs.getString(15));
+				acc.setEmail(rs.getString(5));
+				acc.setPassword(rs.getString(16));
+				d.setAccNo(rs.getLong(1));
+				d.setAdhaarNo(rs.getLong(17));
+				d.setPanNo(rs.getString(18));
+				
+				PersonalDetailsDao pd=new PersonalDetailsDao();
+				pd.addPersonal(p);
+				System.out.println("Peronal added From Register");
+				i=1;
+			}
 
-	@Override
-	public Regsiter searchRegister(long accNo) {
-		// TODO Auto-generated method stub
-		return null;
+			alist.add(p);
+		}
+		catch(Exception e)
+		{
+			System.out.println("In Search Register\t"+e);
+		}
+		finally
+		{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return i;
 	}
 
 	@Override
 	public Regsiter updateRegsiter(Regsiter r) 
 	{
-		
+
 		return null;
 	}
 

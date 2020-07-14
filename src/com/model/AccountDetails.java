@@ -2,20 +2,20 @@ package com.model;
 
 public class AccountDetails 
 {
-	//private long accNo;
+	private long accNo;
 	private String accType;
 	private String email;
 	private String password;
 	
-	public AccountDetails(String accType, String email, String password) {
+	public AccountDetails(long accNo, String accType, String email, String password) {
 		super();
-		//this.accNo = accNo;
+		this.accNo = accNo;
 		this.accType = accType;
 		this.email = email;
 		this.password = password;
 	}
 
-/*	public long getAccNo() {
+	public long getAccNo() {
 		return accNo;
 	}
 
@@ -23,7 +23,7 @@ public class AccountDetails
 		this.accNo = accNo;
 	}
 
-*/	public String getAccType() {
+	public String getAccType() {
 		return accType;
 	}
 

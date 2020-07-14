@@ -1,85 +1,46 @@
 package com.security;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-
-public class EncryptionDecryption 
+public class EncryptionDecryption
 {
-	private static final String UNICODE_FORMAT = "UTF-8";
-	
-	
 	public static void main(String[] args)
 	{
-		PasswordGeneration p=new PasswordGeneration();
-		String password = "Pratiksha";//p.password();
-		//System.out.println(password);
-		try
-		{
-			SecretKey key = generateKey("AES");
-			Cipher chipher;
-			chipher = Cipher.getInstance("AES");
-			
-			byte[] encryptedData = encrypt(password, key, chipher);
-			String encryptedString = new String(encryptedData);
-			System.out.println("Encrypted\t"+encryptedString);
-			
-			String decrypted = decrypt(encryptedData, key, chipher);
-			System.out.println("Decrypted\t"+decrypted);
-		}
-		catch(Exception e)
-		{
-			System.out.println("In Encrypt Main\t"+e);
-		}
+		String encrypted=encrypt("Pratiksha");
+		System.out.println("Encrypted\t"+encrypted);
+		String decrypted=decrypt("Vxgzoqyng");
+		System.out.println("Decrypted\t"+decrypted);
 	}
 	
-	public static SecretKey generateKey(String encryptionType)
+	public static String encrypt(String data)
 	{
-		try
-		{
-			KeyGenerator keyGenerator = KeyGenerator.getInstance(encryptionType);
-			SecretKey myKey = keyGenerator.generateKey();
-			return myKey;
- 		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-			return null;
-		}
-	}
-	
-	public static byte[] encrypt(String dataToEncrypt, SecretKey myKey, Cipher cipher)
-	{
-		try
-		{
-			byte[] password = dataToEncrypt.getBytes(UNICODE_FORMAT);
-			cipher.init(Cipher.ENCRYPT_MODE, myKey);
-			byte[] textEncrypted =  cipher.doFinal(password);
-			return textEncrypted;
-		}
-		catch(Exception e)
-		{
-			System.out.println("In Encrypt\t"+e);
-			return null;
-		}
-	}
-	
-	
-	public static String decrypt(byte[] dataToDecrypt, SecretKey myKey, Cipher cipher)
-	{
-		try
-		{
-			cipher.init(Cipher.DECRYPT_MODE, myKey);
-			byte[] textDecrypted = cipher.doFinal(dataToDecrypt);
-			String result =  new String(textDecrypted);
-			return result;
-		}
-		catch(Exception e)
-		{
-			System.out.println("In Decrypt\t"+e);
-			return null;
-		}
+		String text=data;
+		int key=6;
+		int len=text.length();
+		char[] n=new char[len];
 		
+		for(int i=0;i<text.length();i++)
+		{
+			char x=text.charAt(i);
+			//System.out.println("Character "+x+" at "+i);
+			n[i]=(char) (x+key);
+		}
+		String v=String.valueOf(n);
+		return v;
 	}
-
+	
+	public static String decrypt(String data)
+	{
+		String text=data;
+		int key=6;
+		int len=text.length();
+		char[] n=new char[len];
+		
+		for(int i=0;i<text.length();i++)
+		{
+			char x=text.charAt(i);
+			//System.out.println("Character "+x+" at "+i);
+			n[i]=(char) (x-key);
+		}
+		String v=String.valueOf(n);
+		return v;
+	}
 }

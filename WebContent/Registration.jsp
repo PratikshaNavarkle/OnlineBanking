@@ -83,7 +83,7 @@
 				<h1>Registration Form</h1>
 				</div>
 				<div class="panel-body">
-				<form action="RegisterServlet">
+				<form action="RegisterServlet" method="post">
 				
 				<div class="form-group">
 				

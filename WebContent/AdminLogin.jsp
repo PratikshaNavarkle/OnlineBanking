@@ -3,17 +3,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
-<title>LOL BANK</title>
+
+
+
+<meta charset="ISO-8859-1">
+<title>Admin Login</title>
+<link rel="stylesheet" href="AdminLogin.css">
 <link rel="stylesheet" href="Style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" ></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body>
-
 <section id="nav-bar">
 
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -30,23 +32,15 @@
         <a class="nav-link" href="UserLogin.jsp">User Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="AdminLogin.jsp">Admin Login</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="Registration.jsp">Create Account</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact us</a>
-      </li>
+     
     </ul>
   </div>
 </nav>
 
 </section>
-<!-- ------------banner section------- ------------->
+
 
 <section id="banner">
 
@@ -70,25 +64,35 @@
 </div>
 </section>
 <!-- --------services -->
-<section id="services">
-<div class="container">
-<div class="row">
-<div class="col-md-4 services">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSFacxT-2ZAr7C9FEddyJ5BPmUng7Jx4fyb-A&usqp=CAU" class="service-img">
-<h4>Loan Options</h4>
-<p>In terms of loans ABC Bank provides a variety of customer friendly loan options.Check for "Loan" in drop-down list above for all the loan related activities! </p></div>
-<div class="col-md-4 services">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvd5JprG7K4xCGP3VZC1rieS6R_3I-VCAObQ&usqp=CAU" class="service-img">
-<h4>Online Banking</h4>
-<p>ABC follows a very systematic online banking .Check for "Online Banking" in drop-down list above for all the Online Banking related activities! </p></div>
-<div class="col-md-4 services">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX7nC3HLvfPLu_upVd6Osus_ShWTVRAYjugA&usqp=CAU" class="service-img">
-<h4>Deposit Schemes</h4>
-<p>ABC is one of the safest banks to deposit your money.Check for "Deposit" in drop-down list to learn more! </p>
-</div>
-</div>
-</div>
+
+<h1 align="center">ADMIN LOGIN</h1>
+<section class="container-fluid">
+<section class="row justify-content-center">
+
+<section=class="col-12 col-sm-6 col-md-3">
+
+<form class="form-container" action="AdminValidation" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">ADMIN ID</label>
+    <input type="text" class="form-control" id="exampleInputAccno1" aria-describedby="AccHelp" name="id">
+    <small id="AccHelp" class="form-text text-muted">Admin id sharing  is prohibited by the bank by all means.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">ADMIN PASSWORD</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
+  </div>
+  <button type="submit" class="btn btn-success btn-block">Submit</button>
+</form>
 
 </section>
+
+</section>
+</section>
+
+
 </body>
 </html>

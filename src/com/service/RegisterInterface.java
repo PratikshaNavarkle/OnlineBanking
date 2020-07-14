@@ -7,16 +7,16 @@ import com.model.Regsiter;
 public interface RegisterInterface 
 {
 	//insert
-	public int addRegister(Regsiter r);
+	public long addRegister(Regsiter r);
 	
 	//display
 	public List<Regsiter> getAllRegister();
 	
 	//delete record
-	public void deleteRegister(long accNo);
+	public int deleteRegister(long accNo);
 	
 	//search
-	public Regsiter searchRegister(long accNo);
+	public int searchRegister(long accNo);
 	
 	//update 
 	public Regsiter updateRegsiter(Regsiter r); 

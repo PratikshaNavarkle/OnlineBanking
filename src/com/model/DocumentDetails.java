@@ -2,18 +2,18 @@ package com.model;
 
 public class DocumentDetails 
 {
-	//private long accNo;
+	private long accNo;
 	private String panNo;
 	private long adhaarNo;
 	
-	public DocumentDetails(String panNo, long adhaarNo) {
+	public DocumentDetails(long accNo, String panNo, long adhaarNo) {
 		super();
-		//this.accNo = accNo;
+		this.accNo = accNo;
 		this.panNo = panNo;
 		this.adhaarNo = adhaarNo;
 	}
 	
-/*	public long getAccNo() {
+	public long getAccNo() {
 		return accNo;
 	}
 
@@ -21,7 +21,7 @@ public class DocumentDetails
 		this.accNo = accNo;
 	}
 
-*/	public String getPanNo() {
+	public String getPanNo() {
 		return panNo;
 	}
 

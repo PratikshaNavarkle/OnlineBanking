@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@page import="java.sql.*"%>
-    <%@page import="java.io.PrintWriter"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard design</title>
+<title>Account Statement</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
 <link rel="stylesheet" href="Dash.css">
 </head>
 <body>
+
 
 <input type="checkbox" id="check">
 
@@ -23,7 +21,7 @@
 </label>
 	<div class="left_area">
 
-	<h2>Dashboard</h2>
+	<h2>Account Statement </h2>
 	</div>
 
 <div class="right_area">
@@ -40,29 +38,12 @@
 
 		<h4>User</h4>
 </center>
-<a href="#"><i class="fa fa-home"></i><span>Home</span></a>
-<a href="MyAccount.jsp" id="button"><i class="fa fa-id-card"></i><span>My Account</span></a>
+<a href="Dashboard.jsp"><i class="fa fa-home"></i><span>Home</span></a>
+<a href="MyAccount.jsp"><i class="fa fa-id-card"></i><span>My Account</span></a>
 <a href="faq.jsp"><i class="fa fa-info-circle"></i><span>FAQs</span></a>
-<a href="#"><i class="fa fa-cog"></i><span>Account Settings</span></a>
-<a href="#"><i class="fa fa-history"></i><span>Account Statement</span></a>
+<a href="Settings"><i class="fa fa-cog"></i><span>Account Settings</span></a>
+<a href="accstmt.jsp"><i class="fa fa-history"></i><span>Account Statement</span></a>
 
 
-<div id="loan">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSFacxT-2ZAr7C9FEddyJ5BPmUng7Jx4fyb-A&usqp=CAU" class="service-img">
-<h4>Loan Options</h4>
-<p>In terms of loans ABC Bank provides a variety of customer friendly loan options.Check for "Loan" in drop-down list above for all the loan related activities! </p></div>
-
-<div id="ob">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvd5JprG7K4xCGP3VZC1rieS6R_3I-VCAObQ&usqp=CAU" class="service-img2">
-<h4>Online Banking</h4>
-<p>ABC follows a very systematic online banking .Check for "Online Banking" in drop-down list above for all the Online Banking related activities! </p></div>
-
-<div id="ds">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX7nC3HLvfPLu_upVd6Osus_ShWTVRAYjugA&usqp=CAU" class="service-img3">
-<h4>Deposit Schemes</h4>
-<p>ABC is one of the safest banks to deposit your money.Check for "Deposit" in drop-down list to learn more! </p>
-</div>
-
-</div>
 </body>
 </html>

@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dao.AccountDetailsDao;
+import com.dao.AddressDetailsDao;
+import com.dao.DocumentDetailsDao;
+import com.dao.PersonalDetailsDao;
 import com.dao.RegisterDao;
 import com.model.AccountDetails;
 import com.model.AddressDetails;
@@ -37,23 +41,24 @@ public class RegisterServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HttpSession session= request.getSession();
 		PrintWriter pw=response.getWriter();
-		int i=0;
+		long i=0;
 
 		//read data from user
 		String firstName=request.getParameter("firstName");
 		String middleName=request.getParameter("middleName");
 		String lastName=request.getParameter("lastName");
 		String email=request.getParameter("email");
-		
+		//request.setAttribute("ID", email);
+		session.setAttribute("ID", email);
 		String gender=request.getParameter("gender");
 		String dob=request.getParameter("datepicker");
 		String contactNo=request.getParameter("contact");
@@ -101,27 +106,24 @@ public class RegisterServlet extends HttpServlet {
 		//System.out.println("System generated password\t"+pass);
 		request.setAttribute("password", pass);
 		EncryptionDecryption ed=new EncryptionDecryption();
+		String encryptedData=null;
 		//password encryption
 		try
 		{
-			SecretKey key = ed.generateKey("AES");
-			Cipher chipher;
-			chipher = Cipher.getInstance("AES");
-			
-			byte[] encryptedData = ed.encrypt(pass, key, chipher);
-			password = new String(encryptedData);
-			//System.out.println("Encrypted password\t"+password);
-			String decrypted = ed.decrypt(encryptedData, key, chipher);
-			//System.out.println("Decrypted\t"+decrypted);
+			encryptedData=ed.encrypt(pass);
+			String decryptedData=ed.decrypt(encryptedData);
+			System.out.println("encrypted\t"+encryptedData);
+			System.out.println("decrypted\t"+decryptedData);
 		}
 		catch(Exception e)
 		{
 			System.out.println(e);
 		}
-		PersonalDetails p =  new PersonalDetails(firstName, middleName, lastName, email, gender, sDate, contact);
-		AddressDetails a = new AddressDetails(address, locality, landmark, city, state, postalCode);
-		AccountDetails acc = new AccountDetails(accountType, email, password);
-		DocumentDetails d= new DocumentDetails(panNo, adhaarNo);
+		PersonalDetails p =  new PersonalDetails(0,firstName, middleName, lastName, email, gender, sDate, contact);
+		AddressDetails a = new AddressDetails(0, address, locality, landmark, city, state, postalCode);
+		
+		AccountDetails acc = new AccountDetails(0, accountType, email, encryptedData);
+		DocumentDetails d= new DocumentDetails(0, panNo, adhaarNo);
 
 		Regsiter r=new Regsiter(p, a, acc, d);
 		RegisterDao rd=new RegisterDao();
@@ -130,13 +132,63 @@ public class RegisterServlet extends HttpServlet {
 			i=rd.addRegister(r);
 			if(i>0)
 			{
+				int result=0;
 				System.out.println("Registration Successful...!!");
-				request.setAttribute("email", email);
-				RequestDispatcher rs=request.getRequestDispatcher("EmailServlet");
-				//System.out.println("After RS");
-				rs.forward(request, response);
-				//System.out.println("After forward");
 				
+				PersonalDetails p1=new PersonalDetails(i, firstName, middleName, lastName, email, gender, sDate, contact);
+				PersonalDetailsDao pd=new PersonalDetailsDao();
+				result=pd.addPersonal(p1);
+				if(result>0)
+				{
+					//System.out.println("Personal Details added");
+				}
+				else
+				{
+					System.out.println("Personal Details failed");
+				}
+				
+				AddressDetails a1 = new AddressDetails(i, address, locality, landmark, city, state, postalCode);
+				AddressDetailsDao ad=new AddressDetailsDao();
+				result=ad.addAddress(a1);
+				if(result>0)
+				{
+					//System.out.println("Address Details added");
+				}
+				else
+				{
+					System.out.println("Address Details failed");
+				}
+				
+				AccountDetails acc1	 = new AccountDetails(i, accountType, email, encryptedData);
+				AccountDetailsDao add=new AccountDetailsDao();
+				result=add.addAccount(acc1);
+				if(result>0)
+				{
+					//System.out.println("Account Details added");
+				}
+				else
+				{
+					System.out.println("Account Details failed");
+				}
+				
+				DocumentDetails d1= new DocumentDetails(i, panNo, adhaarNo);
+				DocumentDetailsDao dd=new DocumentDetailsDao();
+				result=dd.addDocument(d1);
+				if(result>0)
+				{
+					//System.out.println("Document Details added");
+				}
+				else
+				{
+					System.out.println("Document Details failed");
+				}
+				
+				//request.setAttribute("email", email);
+				//RequestDispatcher rs=request.getRequestDispatcher("EmailServlet");
+				//System.out.println("After RS");
+				//rs.forward(request, response);
+				//System.out.println("After forward");
+				response.sendRedirect("Home.jsp");
 			}
 			else
 			{

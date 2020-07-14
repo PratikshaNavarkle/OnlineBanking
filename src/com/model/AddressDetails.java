@@ -2,7 +2,7 @@ package com.model;
 
 public class AddressDetails 
 {
-	//private long accNo;
+	private long accNo;
 	private String address;
 	private String locality;
 	private String landmark;
@@ -10,10 +10,10 @@ public class AddressDetails
 	private String state;
 	private int pinCode;
 	
-	public AddressDetails(String address, String locality, String landmark, String city, String state,
+	public AddressDetails(long accNo, String address, String locality, String landmark, String city, String state,
 			int pinCode) {
 		super();
-		//this.accNo = accNo;
+		this.accNo = accNo;
 		this.address = address;
 		this.locality = locality;
 		this.landmark = landmark;
@@ -22,14 +22,14 @@ public class AddressDetails
 		this.pinCode = pinCode;
 	}
 
-/*	public long getAccNo() {
+	public long getAccNo() {
 		return accNo;
 	}
 
 	public void setAccNo(long accNo) {
 		this.accNo = accNo;
 	}
-*/
+
 	public String getAddress() {
 		return address;
 	}

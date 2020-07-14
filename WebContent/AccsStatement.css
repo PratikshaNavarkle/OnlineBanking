@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+@charset "ISO-8859-1";
 body{
 	
 	margin: 0;
@@ -132,41 +132,4 @@ label #sidebar_btn:hover{
 	width: 80px;
 	
 }
-#q1{
-	
-	margin-top:  -10cm;
-	font-size: large;
-	margin-left: 7cm;
-	width: 100%
-	
-}
-#a1{
-	margin-top:0px;
-	font-size: large;
-	margin-left: 7cm;
-	width:260%;
-}
-#q2{
-	
-	font-size: large;
-	margin-left: 7cm;
-	width: 190%
-	
-}
-#a2{
-	font-size: large;
-	margin-left: 7cm;
-	width:320%;
-}
-#q3{
-	
-	font-size: large;
-	margin-left: 7cm;
-	width: 190%;
-	
-}
-#a3{
-	font-size: large;
-	margin-left: 7cm;
-	width:360%;
 }

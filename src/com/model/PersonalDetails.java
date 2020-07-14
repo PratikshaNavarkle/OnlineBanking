@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class PersonalDetails 
 {
-	//private long accNo;
+	private long accNo;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -13,10 +13,10 @@ public class PersonalDetails
 	private Date dob;
 	private long contact;
 	
-	public PersonalDetails(String firstName, String middleName, String lastName, String email,
+	public PersonalDetails(long accNo, String firstName, String middleName, String lastName, String email,
 			String gender, Date date, long contact) {
 		super();
-		//this.accNo = accNo;
+		this.accNo = accNo;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -26,14 +26,14 @@ public class PersonalDetails
 		this.contact = contact;
 	}
 
-/*	public long getAccNo() {
+	public long getAccNo() {
 		return accNo;
 	}
 
 	public void setAccNo(long accNo) {
 		this.accNo = accNo;
 	}
-*/
+
 	public String getFirstName() {
 		return firstName;
 	}

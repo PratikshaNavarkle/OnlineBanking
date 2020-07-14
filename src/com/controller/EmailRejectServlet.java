@@ -15,29 +15,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dao.AccountDetailsDao;
 import com.security.PasswordGeneration;
 
 /**
- * Servlet implementation class EmailServlet
+ * Servlet implementation class EmailApproveServlet
  */
-@WebServlet("/EmailServlet")
-public class EmailServlet extends HttpServlet {
+@WebServlet("/EmailApproveServlet")
+public class EmailRejectServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EmailServlet() {
-        super();
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public EmailRejectServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		String email=(String) request.getAttribute("emailID");
 		//System.out.println("in email servelt");
-		String email=(String) request.getAttribute("email");
+		//String email=(String) request.getAttribute("email");
 		//System.out.println("1");
 		String pass=(String) request.getAttribute("password");
 		//System.out.println("2");
@@ -48,7 +51,7 @@ public class EmailServlet extends HttpServlet {
 		final String username = "pratiksha.21820071@viit.ac.in";
 		final String password = "abc12345";
 		//System.out.println("3");
-		String bodyMessage="Hii...You created new Account in our Bank\n Your password is : "+pass+"\n Use your registred mail ID and above password to login. You can chnage your password after login, go to Account Setting ";
+		String bodyMessage="Hii...Your account has been rejected for not providing valid information. Please fill in with proper details";
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");
 		prop.put("mail.smtp.port", "587");
@@ -61,7 +64,7 @@ public class EmailServlet extends HttpServlet {
 			protected javax.mail.PasswordAuthentication getPasswordAuthentication() 
 			{
 				return new javax.mail.PasswordAuthentication(username, password);
-				
+
 			}
 		});
 
@@ -70,7 +73,7 @@ public class EmailServlet extends HttpServlet {
 			Message message = new MimeMessage(ss);
 			message.setFrom(new InternetAddress(username));
 			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(ReceiverAddress));
-			message.setSubject("New Account request approved");
+			message.setSubject("New Account request rejected");
 			message.setText(bodyMessage);
 			//System.out.println("6");
 			Transport.send(message);
@@ -81,15 +84,16 @@ public class EmailServlet extends HttpServlet {
 		{
 			System.out.println("Email\t"+e);
 		}
-		response.sendRedirect("Home.jsp");
+		response.sendRedirect("AdminHome.jsp");
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

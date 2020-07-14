@@ -3,6 +3,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.footer-main-div{
+width: 100%;
+	height: auto;	
+	color: black;
+	padding: 20px 0px;
+    bottom: 0;    
+}
+.footer-menu-one{
+	
+	width: 100%;
+	height: auto;
+	margin:auto;
+	margin-top: 20px;
+}
+.form-container{
+     
+	
+	margin-top: 1cm;
+    margin-left: -0px;
+	width:100%;
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 0px #000;
+}
+
+
+
+
+
+
+
+
+</style>
 <meta charset="ISO-8859-1" name="viewport" content="width=device-width, initial-scale=1">
 <title>LOL BANK</title>
 <link rel="stylesheet" href="Style.css">
@@ -27,20 +62,12 @@
         <a class="nav-link" href="Home.jsp">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="UserLogin.jsp">User Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="AdminLogin.jsp">Admin Login</a>
+        <a class="nav-link" href="Adminlogin.jsp">Admin Login</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Registration.jsp">Create Account</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact us</a>
-      </li>
+     
     </ul>
   </div>
 </nav>
@@ -70,25 +97,81 @@
 </div>
 </section>
 <!-- --------services -->
-<section id="services">
-<div class="container">
-<div class="row">
-<div class="col-md-4 services">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSFacxT-2ZAr7C9FEddyJ5BPmUng7Jx4fyb-A&usqp=CAU" class="service-img">
-<h4>Loan Options</h4>
-<p>In terms of loans ABC Bank provides a variety of customer friendly loan options.Check for "Loan" in drop-down list above for all the loan related activities! </p></div>
-<div class="col-md-4 services">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvd5JprG7K4xCGP3VZC1rieS6R_3I-VCAObQ&usqp=CAU" class="service-img">
-<h4>Online Banking</h4>
-<p>ABC follows a very systematic online banking .Check for "Online Banking" in drop-down list above for all the Online Banking related activities! </p></div>
-<div class="col-md-4 services">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQX7nC3HLvfPLu_upVd6Osus_ShWTVRAYjugA&usqp=CAU" class="service-img">
-<h4>Deposit Schemes</h4>
-<p>ABC is one of the safest banks to deposit your money.Check for "Deposit" in drop-down list to learn more! </p>
-</div>
-</div>
-</div>
+
+
+<h1 align="center"> USER LOGIN</h1>
+<section class="container-fluid">
+<section class="row justify-content-center">
+
+<section=class="col-12 col-sm-6 col-md-3">
+
+<form class="form-container" action="UserLoginValidation" method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Account Number</label>
+    <input type="text" class="form-control" id="exampleInputAccno1" aria-describedby="AccHelp" name="id">
+    <small id="AccHelp" class="form-text text-muted">Your Account Number will be private.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Keep me logged in</label>
+  </div>
+  <button type="submit" class="btn btn-success btn-block">Submit</button>
+</form>
 
 </section>
+
+</section>
+</section>
+
+
+
+
+
+
+
+<!-- --footer -->
+
+<div class="footer-main-div">
+
+<div class="footer-social-icons">
+ <ul>
+ 
+ <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+ <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+ <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+ <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+ 
+ 
+ 
+ 
+ </ul>
+
+
+
+</div>
+
+<div class="footer-menu-one">
+<ul>
+
+<li><a href="#">Home</a></li>
+<li><a href="#">About us</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Contact us: 9191919191</a></li>
+
+
+
+</ul>
+
+
+
+</div>
+
+</div>
+
+<!-- //footer -->
 </body>
 </html>
