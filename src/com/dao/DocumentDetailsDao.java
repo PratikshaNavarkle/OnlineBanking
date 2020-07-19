@@ -12,14 +12,17 @@ import java.util.List;
 import com.model.DocumentDetails;
 import com.service.DocumentDetailsInterface;
 
+import DbConnection.DBConnection;
+
 public class DocumentDetailsDao implements DocumentDetailsInterface
 {
+	DBConnection db=new DBConnection();
 	Connection con;
 	PreparedStatement ps;
 	Statement statement;
 	ResultSet rs;
 
-	public void myConnection() throws Exception
+/*	public void myConnection() throws Exception
 	{
 		final String driver="oracle.jdbc.OracleDriver";
 		final String username="SYSTEM";
@@ -32,14 +35,15 @@ public class DocumentDetailsDao implements DocumentDetailsInterface
 		//System.out.println("Connection :"+con);
 	}
 
-	
+*/	
 	@Override
 	public int addDocument(DocumentDetails d)
 	{
+		con=db.myConnection();
 		int i=0;
 		try
 		{
-			myConnection();
+			//myConnection();
 		//	System.out.println("In add Document");
 			ps=con.prepareStatement("insert into Documents_Details values(?,?,?)");
 			ps.setLong(1, d.getAccNo());
@@ -74,10 +78,11 @@ public class DocumentDetailsDao implements DocumentDetailsInterface
 	@Override
 	public int deleteDocument(long accNo)
 	{
+		con=db.myConnection();
 		int i=0;
 		try
 		{
-			myConnection();
+			//myConnection();
 		//	System.out.println("1");
 			ps=con.prepareStatement("delete from Documents_Details where accno=?");
 		//	System.out.println("2");

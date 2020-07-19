@@ -37,4 +37,16 @@ public class DocumentDetails
 		this.adhaarNo = adhaarNo;
 	}
 
+	@Override
+	public String toString() {
+		return "DocumentDetails [accNo=" + accNo + ", panNo=" + panNo + ", adhaarNo=" + adhaarNo + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	
 }

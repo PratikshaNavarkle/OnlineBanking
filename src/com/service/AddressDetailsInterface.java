@@ -21,6 +21,7 @@ public interface AddressDetailsInterface
 	public AddressDetails searchAddress(long accNo);
 
 	//update 
-	public AddressDetails updateAddress(AddressDetails a); 
+	public AddressDetails updateAddress(AddressDetails a);
+
 
 }

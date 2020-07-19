@@ -13,14 +13,17 @@ import com.model.PersonalDetails;
 import com.model.Regsiter;
 import com.service.PersonalDetailsInterface;
 
+import DbConnection.DBConnection;
+
 public class PersonalDetailsDao implements PersonalDetailsInterface
 {
+	DBConnection db=new DBConnection();
 	Connection con;
 	PreparedStatement ps;
 	Statement statement;
 	ResultSet rs;
 
-	public void myConnection() throws Exception
+/*	public void myConnection() throws Exception
 	{
 		final String driver="oracle.jdbc.OracleDriver";
 		final String username="SYSTEM";
@@ -32,14 +35,15 @@ public class PersonalDetailsDao implements PersonalDetailsInterface
 		con=DriverManager.getConnection(url,username,password);
 		//System.out.println("Connection :"+con);
 	}
-
+*/
 	@Override
 	public int addPersonal(PersonalDetails p) 
 	{
+		con=db.myConnection();
 		int i=0;
 		try
 		{
-			myConnection();
+			//myConnection();
 			//System.out.println("In add Personal");
 			ps=con.prepareStatement("insert into Personal_Details values(?,?,?,?,?,?,?,?)");
 			ps.setLong(1, p.getAccNo());
@@ -79,10 +83,11 @@ public class PersonalDetailsDao implements PersonalDetailsInterface
 	@Override
 	public int deletePersonal(long accNo) 
 	{
+		con=db.myConnection();
 		int i=0;
 		try
 		{
-			myConnection();
+			//myConnection();
 			//System.out.println("1");
 			ps=con.prepareStatement("delete from Personal_Details where accno=?");
 			//System.out.println("2");
@@ -112,15 +117,58 @@ public class PersonalDetailsDao implements PersonalDetailsInterface
 	}
 
 	@Override
-	public PersonalDetails searchPersonal(long accNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public String searchPersonal(long accNo) 
+	{
+		con=db.myConnection();
+		String firstName=null;
+		try
+		{
+			//myConnection();
+			ps=con.prepareStatement("select firstname from Personal_Details where accno=?");
+			ps.setLong(1, accNo);
+			ResultSet rs=ps.executeQuery();
+
+			if(rs.next())
+			{
+				firstName=rs.getString(1);
+			}
+			System.out.println("Name is\t"+firstName);
+		}
+		catch(Exception e)
+		{
+			System.out.println("In serach NAme \t"+e);
+		}
+		return firstName;
 	}
 
 	@Override
 	public PersonalDetails updatePersonal(PersonalDetails p) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String searchName(long accNo) 
+	{
+		con=db.myConnection();
+		String lastName=null;
+		try
+		{
+			//myConnection();
+			ps=con.prepareStatement("select lastname from Personal_Details where accno=?");
+			ps.setLong(1, accNo);
+			ResultSet rs=ps.executeQuery();
+
+			if(rs.next())
+			{
+				lastName=rs.getString(1);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println("In serach NAme \t"+e);
+		}
+		return lastName;
 	}
 
 }

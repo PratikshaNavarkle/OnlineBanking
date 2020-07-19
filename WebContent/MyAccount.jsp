@@ -7,28 +7,25 @@
 <head>
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Profile</title>
+<title>My Account</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-<link rel="stylesheet" href="Dash.css">
+<link rel="stylesheet" href="CSS/Dash.css">
+<link rel="stylesheet" href="CSS/MyAccount.css">
 </head>
 <body>
-
-	<input type="checkbox" id="check">
-
 	<!--header-area-start---->
 
 	<header>
-		<label for=""> <i class="fa fa-bars" id="sidebar_btn"></i>
 		</label>
 		<div class="left_area">
 
-			<h2>Dashboard</h2>
+			<h2>My Account</h2>
 		</div>
 
 		<div class="right_area">
 
-			<a href="Login.jsp" class="logout_btn">Logout</a>
+			<a href="Home.jsp" class="logout_btn">Logout</a>
 		</div>
 	</header>
 
@@ -42,47 +39,120 @@
 
 			<h4>User</h4>
 		</center>
-		<a href="#"><i class="fa fa-home"></i><span>Home</span></a> <a
+		<a href="Dashboard.jsp"><i class="fa fa-home"></i><span>Home</span></a> <a
 			href="MyAccount.jsp" id="button"><i class="fa fa-id-card"></i><span>My
-				Account</span></a> <a href="faq.jsp"><i class="fa fa-info-circle"></i><span>FAQs</span></a>
+				Account</span></a> <a href="FAQ.jsp"><i class="fa fa-info-circle"></i><span>FAQs</span></a>
 		<a href="#"><i class="fa fa-cog"></i><span>Account Settings</span></a>
-		<a href="#"><i class="fa fa-history"></i><span>Account
-				Statement</span></a>
+		<a href="AccsStatement.jsp"><i class="fa fa-history"></i><span>Account
+				Statement</span></a><a href="FundTransfer.jsp"><i class="fa fa-history"></i><span>Fund
+				Transfer</span></a>
+
+	</div>
+
+	<div class="container">
+		<h1>Withdraw Amount</h1>
+		<a href="#" class="button" id="abc">Withdraw</a>
+	</div>
+
+	<div class="popup">
+		<div class="popup-content">
+			<img alt="Close" src="Images/close.jpg" class="close"> <img
+				src="Images/withdraw.jpg" alt="Withdraw" height="80px" width="80px">
+			<form action="WithdrawServlet" method="post">
+				<input type="number" min="100000000000" placeholder="Account Number"pattern="[0-9]{12}" name="accNo">
+				<input type="number" placeholder="Amount" min="0" name="amount"> <input
+					type="submit" value="Withdraw" class="button">
+			</form>
+		</div>
+	</div>
+
+	<script>
+	document.getElementById("abc").addEventListener("click",function(){
+		document.querySelector(".popup").style.display = "flex";
+	})
 	
-	<%
-		try {
-			long no = 7040326744L;
-			ResultSet rs = null;
-			Class.forName("oracle.jdbc.OracleDriver");
-			//step2 connection to DB
-			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE", "SYSTEM",
-					"Pr@tiksha");
-			PreparedStatement ps = con.prepareStatement("select * from Register where contact=?");
-			ps.setLong(1, no);
-			rs = ps.executeQuery();
-			PrintWriter pw = response.getWriter();
-			pw.println("<html><body><table align='center' id='profile'");
+	document.querySelector(".close").addEventListener("click",function(){
+		document.querySelector(".popup").style.display = "none";
+	})
+	</script>
 
-			if (rs.next()) {
-				//System.out.println(rs.getDate(10));
-				Date d = rs.getDate(10);
-				pw.println("<tr><td>First Name:\t" + rs.getString(1) + "</td></tr><tr><td>Middle Name:\t"
-						+ rs.getString(2) + "</td></tr><tr><td>Last Name:\t" + rs.getString(3)
-						+ "</td></tr><tr><td>Address:\t" + rs.getString(4) + "</td></tr><tr><td>Postal Code:\t"
-						+ rs.getInt(5) + "</td></tr><tr><td>City:\t"
-						+ rs.getString(6) + "</td></tr><tr><td>State:\t" + rs.getString(7)
-						+ "</td></tr><tr><td>Email:\t" + rs.getString(8) + "</td></tr><tr><td>Gender:\t"
-						+ rs.getString(9) + "</td></tr><tr><td>Date of Birth:\t" + rs.getDate(10)
-						+ "</td></tr><tr><td>Contact:\t" + rs.getLong(11) + "</td></tr><tr><td>Account Type:\t"
-						+ rs.getString(12) + "</td></tr><tr><td>Account Number:\t" + rs.getLong(13) + "</td></tr>");
+	<div class="container1">
+		<h1>Deposit Amount</h1>
+		<a href="#" class="button1" id="abc1">Deposit</a>
+	</div>
 
-			}
+	<div class="popup1">
+		<div class="popup-content1">
+			<img alt="Close" src="Images/close.jpg" class="close1"> <img
+				src="Images/deposit.jpg" alt="Deposite" height="80px" width="80px"><form action="DepositServlet" method="post"> <input
+				type="number" placeholder="Account Number" min="100000000000" name="accNo" pattern="[0-9]{12}"> <input
+				type="number" placeholder="Amount" name="amount" min="0"> <input
+				type="submit" value="Deposit" class="button1">
+			</form>
+		</div>
+	</div>
 
-		} catch (Exception e) {
-			System.out.println(e);
+	<script>
+	document.getElementById("abc1").addEventListener("click",function(){
+		document.querySelector(".popup1").style.display = "flex";
+	})
+	
+	document.querySelector(".close1").addEventListener("click",function(){
+		document.querySelector(".popup1").style.display = "none";
+	})
+	</script>
+
+	<div class="contain">
+
+		<%
+	
+	try 
+	{
+		String s=(String)session.getAttribute("accNo");
+		//System.out.println(s);
+		long ID=Long.parseLong(s);
+		//System.out.println("Account number\t"+ID);
+
+		
+		//System.out.println("Account number\t"+no);
+		//long no = 100000000000L;
+		ResultSet rs = null;
+		Class.forName("oracle.jdbc.OracleDriver");
+		//step2 connection to DB
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE", "SYSTEM",
+				"Pr@tiksha");
+		PreparedStatement ps = con.prepareStatement("select * from Personal_Details where accno=?");
+		ps.setLong(1, ID);
+		rs = ps.executeQuery();
+		PrintWriter pw = response.getWriter();
+		pw.println("<html><body><table align='center' border=1 id='profile'");
+
+		if (rs.next()) {
+			//System.out.println(rs.getDate(10));
+			//System.out.println("1");
+			pw.println("<tr><td>Account Number:\t" + rs.getLong("accno") + "</td></tr> <tr><td>First Name:\t"
+					+ rs.getString("firstname") + "</td></tr><tr><td>Middle Name:\t" + rs.getString("middlename")
+					+ "</td></tr><tr><td>Last Name:\t" + rs.getString("lastname") + "</td></tr><tr><td>Email ID:\t"
+					+ rs.getString("email") + "</td></tr><tr><td>Contact Number:\t" + rs.getLong("contact") + "</td></tr>");
+			//System.out.println("1");
 		}
-	%>
+		ps = con.prepareStatement("select * from Account_Details where accno=?");
+		ps.setLong(1, ID);
+		rs = ps.executeQuery();
+		
+		if (rs.next()) {
+			//System.out.println(rs.getDate(10));
+			//System.out.println("2");
+			pw.println("<tr><td>Account Type:\t" + rs.getString(2) + "</td></tr><tr><td>Account Balance:\t"
+					+ rs.getInt(3) + "</td></tr>");
+		}
+		pw.println(" </table></body></html>");
+	} catch (Exception e) {
+		System.out.println("In My Account Jsp\t" + e);
+	}
+%>
+	</div>
 
-</div>
+
 </body>
 </html>

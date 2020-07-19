@@ -61,6 +61,7 @@ public class RegisterServlet extends HttpServlet {
 		session.setAttribute("ID", email);
 		String gender=request.getParameter("gender");
 		String dob=request.getParameter("datepicker");
+		System.out.println(dob);
 		String contactNo=request.getParameter("contact");
 		String address=request.getParameter("address");
 		String locality=request.getParameter("locality");
@@ -69,6 +70,7 @@ public class RegisterServlet extends HttpServlet {
 		String state=request.getParameter("state");
 		String pinCode = request.getParameter("pin");
 		String accountType=request.getParameter("accType");
+		String balance=request.getParameter("balance");
 		String panNo= request.getParameter("panNo");
 		String adhar=request.getParameter("aadharNo");
 
@@ -79,25 +81,38 @@ public class RegisterServlet extends HttpServlet {
 		//convert into respective data type
 		int postalCode = Integer.parseInt(pinCode);
 		long contact= Long.parseLong(contactNo);
+		int accBal=Integer.parseInt(balance);
 		//long panNo= Long.parseLong(pan);
 		long adhaarNo= Long.parseLong(adhar);
 
 		//string to date conversion
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-		Date date=null;
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		String ds2=null;
 		try {
-			date = formatter.parse(dob);
-		} 
+			ds2 = sdf2.format(sdf1.parse(dob));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		//SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date date=null;
+		java.sql.Date sDate=null;
+		try {
+			date = sdf2.parse(ds2);
+
+			//System.out.println("Util date\t"+date);
+			//util date to sql date
+			sDate = new java.sql.Date(date.getTime());
+			DateFormat df = new SimpleDateFormat("dd/MM/YYYY - hh:mm:ss");
+			//System.out.println("SQL date\t"+sDate);
+		}
 		catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println("Util date\t"+date);
-		//util date to sql date
-		java.sql.Date sDate = new java.sql.Date(date.getTime());
-		DateFormat df = new SimpleDateFormat("dd/MM/YYYY - hh:mm:ss");
-		//System.out.println("SQL date\t"+sDate);
-
 
 		//system generated password
 		String password=null;
@@ -121,8 +136,8 @@ public class RegisterServlet extends HttpServlet {
 		}
 		PersonalDetails p =  new PersonalDetails(0,firstName, middleName, lastName, email, gender, sDate, contact);
 		AddressDetails a = new AddressDetails(0, address, locality, landmark, city, state, postalCode);
-		
-		AccountDetails acc = new AccountDetails(0, accountType, email, encryptedData);
+
+		AccountDetails acc = new AccountDetails(0, accountType, accBal, email, encryptedData);
 		DocumentDetails d= new DocumentDetails(0, panNo, adhaarNo);
 
 		Regsiter r=new Regsiter(p, a, acc, d);
@@ -134,7 +149,7 @@ public class RegisterServlet extends HttpServlet {
 			{
 				int result=0;
 				System.out.println("Registration Successful...!!");
-				
+
 				PersonalDetails p1=new PersonalDetails(i, firstName, middleName, lastName, email, gender, sDate, contact);
 				PersonalDetailsDao pd=new PersonalDetailsDao();
 				result=pd.addPersonal(p1);
@@ -146,7 +161,7 @@ public class RegisterServlet extends HttpServlet {
 				{
 					System.out.println("Personal Details failed");
 				}
-				
+
 				AddressDetails a1 = new AddressDetails(i, address, locality, landmark, city, state, postalCode);
 				AddressDetailsDao ad=new AddressDetailsDao();
 				result=ad.addAddress(a1);
@@ -158,8 +173,8 @@ public class RegisterServlet extends HttpServlet {
 				{
 					System.out.println("Address Details failed");
 				}
-				
-				AccountDetails acc1	 = new AccountDetails(i, accountType, email, encryptedData);
+
+				AccountDetails acc1	 = new AccountDetails(i, accountType, accBal, email, encryptedData);
 				AccountDetailsDao add=new AccountDetailsDao();
 				result=add.addAccount(acc1);
 				if(result>0)
@@ -170,7 +185,7 @@ public class RegisterServlet extends HttpServlet {
 				{
 					System.out.println("Account Details failed");
 				}
-				
+
 				DocumentDetails d1= new DocumentDetails(i, panNo, adhaarNo);
 				DocumentDetailsDao dd=new DocumentDetailsDao();
 				result=dd.addDocument(d1);
@@ -182,7 +197,7 @@ public class RegisterServlet extends HttpServlet {
 				{
 					System.out.println("Document Details failed");
 				}
-				
+
 				//request.setAttribute("email", email);
 				//RequestDispatcher rs=request.getRequestDispatcher("EmailServlet");
 				//System.out.println("After RS");

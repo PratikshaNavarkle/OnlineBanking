@@ -12,14 +12,17 @@ import java.util.List;
 import com.model.AddressDetails;
 import com.service.AddressDetailsInterface;
 
+import DbConnection.DBConnection;
+
 public class AddressDetailsDao implements AddressDetailsInterface
 {
+	DBConnection db=new DBConnection();
 	Connection con;
 	PreparedStatement ps;
 	Statement statement;
 	ResultSet rs;
 
-	public void myConnection() throws Exception
+/*	public void myConnection() throws Exception
 	{
 		final String driver="oracle.jdbc.OracleDriver";
 		final String username="SYSTEM";
@@ -31,15 +34,16 @@ public class AddressDetailsDao implements AddressDetailsInterface
 		con=DriverManager.getConnection(url,username,password);
 		//System.out.println("Connection :"+con);
 	}
-
+*/
 
 	@Override
 	public int addAddress(AddressDetails a) 
 	{
+		con=db.myConnection();
 		int i=0;
 		try
 		{
-			myConnection();
+			//myConnection();
 			//System.out.println("In add Address");
 			ps=con.prepareStatement("insert into Residential_Details values(?,?,?,?,?,?,?)");
 			ps.setLong(1, a.getAccNo());
@@ -71,16 +75,17 @@ public class AddressDetailsDao implements AddressDetailsInterface
 
 	@Override
 	public List<AddressDetails> getAllAddressDetails() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public int deleteAddress(long accNo) {
 		int i=0;
+		con=db.myConnection();
 		try
 		{
-			myConnection();
+			//myConnection();
 			//System.out.println("1");
 			ps=con.prepareStatement("delete from Residential_Details where accno=?");
 			//System.out.println("2");

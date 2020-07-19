@@ -46,5 +46,18 @@ public class Regsiter
 	public void setD(DocumentDetails d) {
 		this.d = d;
 	}
+
+	@Override
+	public String toString() {
+		return "Regsiter [p=" + p + ", a=" + a + ", acc=" + acc + ", d=" + d + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+	
+	
 	
 }

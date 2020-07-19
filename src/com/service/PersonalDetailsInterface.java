@@ -17,7 +17,8 @@ public interface PersonalDetailsInterface
 	public int deletePersonal(long accNo);
 
 	//search
-	public PersonalDetails searchPersonal(long accNo);
+	public String searchPersonal(long accNo);
+	public String searchName(long accNo);
 
 	//update 
 	public PersonalDetails updatePersonal(PersonalDetails p); 

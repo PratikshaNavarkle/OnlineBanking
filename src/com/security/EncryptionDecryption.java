@@ -9,38 +9,54 @@ public class EncryptionDecryption
 		String decrypted=decrypt("Vxgzoqyng");
 		System.out.println("Decrypted\t"+decrypted);
 	}
-	
+
 	public static String encrypt(String data)
 	{
+		try
+		{
 		String text=data;
 		int key=6;
 		int len=text.length();
 		char[] n=new char[len];
-		
+
 		for(int i=0;i<text.length();i++)
 		{
 			char x=text.charAt(i);
 			//System.out.println("Character "+x+" at "+i);
 			n[i]=(char) (x+key);
 		}
-		String v=String.valueOf(n);
-		return v;
+		String value=String.valueOf(n);
+		return value;
+		}
+		catch(Exception e)
+		{
+			System.out.println("In Encrypt method\t"+e);
+			return null;
+		}
 	}
-	
+
 	public static String decrypt(String data)
 	{
-		String text=data;
-		int key=6;
-		int len=text.length();
-		char[] n=new char[len];
-		
-		for(int i=0;i<text.length();i++)
+		try
 		{
-			char x=text.charAt(i);
-			//System.out.println("Character "+x+" at "+i);
-			n[i]=(char) (x-key);
+			String text=data;
+			int key=6;
+			int len=text.length();
+			char[] n=new char[len];
+
+			for(int i=0;i<text.length();i++)
+			{
+				char x=text.charAt(i);
+				//System.out.println("Character "+x+" at "+i);
+				n[i]=(char) (x-key);
+			}
+			String value=String.valueOf(n);
+			return value;
 		}
-		String v=String.valueOf(n);
-		return v;
+		catch(Exception e)
+		{
+			System.out.println("In decrypt method\t"+e);
+			return null;
+		}
 	}
-}
+}	

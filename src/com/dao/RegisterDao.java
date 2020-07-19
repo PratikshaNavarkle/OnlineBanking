@@ -21,12 +21,14 @@ import DbConnection.DBConnection;
 
 public class RegisterDao implements RegisterInterface
 {
+	
+	DBConnection d=new DBConnection();
 	Connection con;
 	PreparedStatement ps;
 	Statement statement;
 	ResultSet rs;
 
-	public void myConnection() throws Exception
+/*	public void myConnection() throws Exception
 	{
 		final String driver="oracle.jdbc.OracleDriver";
 		final String username="SYSTEM";
@@ -38,20 +40,19 @@ public class RegisterDao implements RegisterInterface
 		con=DriverManager.getConnection(url,username,password);
 		//System.out.println("Connection :"+con);
 	}
-
+*/
 	@Override
 	public long addRegister(Regsiter r)
 	{
 		int i=0;
 		Long accNo=100000000000L;
-		//DBConnection d=new DBConnection();
-		//d.myConnection();
+		con=d.myConnection();
 		try 
 		{
-			myConnection();
+			//myConnection();
 			//System.out.println("Before sequence");
 			
-			//String sql="select accNo.nextval from Register";
+			String sql="select accNo.nextval from Register";
 			//System.out.println("first");
 			ps=con.prepareStatement("select accNo.nextval from Register");
 			//System.out.println("2");
@@ -64,9 +65,9 @@ public class RegisterDao implements RegisterInterface
 				//System.out.println("5");
 			}
 			r.getP().setAccNo(accNo);
-			System.out.println("Account number is set to\t"+r.getP().getAccNo());
+			//System.out.println("Account number is set to\t"+r.getP().getAccNo());
 			//System.out.println("After sequence");
-			ps=con.prepareStatement("insert into Register values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps=con.prepareStatement("insert into Register values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			//System.out.println("Enter cust id, first name and last name");
 			//System.out.println("1");
 			ps.setLong(1, accNo);
@@ -84,9 +85,10 @@ public class RegisterDao implements RegisterInterface
 			ps.setString(13, r.getA().getState());
 			ps.setInt(14, r.getA().getPinCode());
 			ps.setString(15, r.getAcc().getAccType());
-			ps.setString(16, r.getAcc().getPassword());
-			ps.setLong(17, r.getD().getAdhaarNo());
-			ps.setString(18, r.getD().getPanNo());
+			ps.setDouble(16, r.getAcc().getAccBal());
+			ps.setString(17, r.getAcc().getPassword());
+			ps.setLong(18, r.getD().getAdhaarNo());
+			ps.setString(19, r.getD().getPanNo());
 			//System.out.println("2");
 			i=ps.executeUpdate();
 			//System.out.println("After execute");
@@ -131,9 +133,10 @@ public class RegisterDao implements RegisterInterface
 	public int deleteRegister(long accNo) 
 	{
 		int i=0;
+		con=d.myConnection();
 		try
 		{
-			myConnection();
+		//	myConnection();
 			//System.out.println("1");
 			ps=con.prepareStatement("delete from Register where accno=?");
 			//System.out.println("2");
@@ -165,7 +168,7 @@ public class RegisterDao implements RegisterInterface
 	@Override
 	public int searchRegister(long accNo) 
 	{
-		
+		con=d.myConnection();	
 		int i=0;
 		try
 		{
@@ -176,7 +179,7 @@ public class RegisterDao implements RegisterInterface
 			List<PersonalDetails> alist=new ArrayList<PersonalDetails>();
 			PersonalDetails p=new PersonalDetails(0, null, null, null, null, null, null, 0);
 			AddressDetails a=new AddressDetails(0, null, null, null, null, null, 0);
-			AccountDetails acc=new AccountDetails(0, null, null, null);
+			AccountDetails acc=new AccountDetails(0, null, 0, null, null);
 			DocumentDetails d= new DocumentDetails(0, null, 0);
 			if(rs.next())
 			{
@@ -198,11 +201,12 @@ public class RegisterDao implements RegisterInterface
 				a.setPinCode(rs.getInt(14));
 				acc.setAccNo(rs.getLong(1));
 				acc.setAccType(rs.getString(15));
+				acc.setAccBal(rs.getInt(16));
 				acc.setEmail(rs.getString(5));
-				acc.setPassword(rs.getString(16));
+				acc.setPassword(rs.getString(17));
 				d.setAccNo(rs.getLong(1));
-				d.setAdhaarNo(rs.getLong(17));
-				d.setPanNo(rs.getString(18));
+				d.setAdhaarNo(rs.getLong(18));
+				d.setPanNo(rs.getString(19));
 				
 				PersonalDetailsDao pd=new PersonalDetailsDao();
 				pd.addPersonal(p);

@@ -9,12 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard design</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-<link rel="stylesheet" href="Dash.css">
+<link rel="stylesheet" href="CSS/Dashboard.css">
 </head>
 <body>
-
-<input type="checkbox" id="check">
-
 <!--header-area-start---->
 
 <header>
@@ -28,10 +25,16 @@
 
 <div class="right_area">
 
-	<a href="Login.jsp" class="logout_btn">Logout</a>
+	<a href="Home.jsp" class="logout_btn">Logout</a>
 </div>
 </header>
+<%
+String s=(String)session.getAttribute("accNo");
+//System.out.println(s);
+long ID=Long.parseLong(s);
+//System.out.println("Account number\t"+ID);
 
+%>
 <div class="sidebar">
 
 	<center>
@@ -40,11 +43,12 @@
 
 		<h4>User</h4>
 </center>
-<a href="#"><i class="fa fa-home"></i><span>Home</span></a>
+<a href="Home.jsp"><i class="fa fa-home"></i><span>Home</span></a>
 <a href="MyAccount.jsp" id="button"><i class="fa fa-id-card"></i><span>My Account</span></a>
-<a href="faq.jsp"><i class="fa fa-info-circle"></i><span>FAQs</span></a>
+<a href="FAQ.jsp"><i class="fa fa-info-circle"></i><span>FAQs</span></a>
 <a href="#"><i class="fa fa-cog"></i><span>Account Settings</span></a>
-<a href="#"><i class="fa fa-history"></i><span>Account Statement</span></a>
+<a href="AccsStatement.jsp"><i class="fa fa-history"></i><span>Account Statement</span></a>
+<a href="FundTransfer.jsp"><i class="fa fa-history"></i><span>Fund Transfer</span></a>
 
 
 <div id="loan">

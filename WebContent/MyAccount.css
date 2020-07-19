@@ -1,0 +1,156 @@
+@CHARSET "ISO-8859-1";
+
+.container{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-90%, -90%);
+	text-align: center;
+	
+}
+.container h1{
+	color: #400080;
+	font-size: 36px;
+	margin-bottom: 40px;
+}
+
+.button{
+	background: #fff;
+	padding: 10px 15px;
+	color: #34495e;
+	font-weight: bolder;
+	text-transform: uppercase;
+	font-size: 18px;
+	border-radius: 5px;
+	box-shadow: 6px 6px 29px -4px rgba(0,0,0,0.75);
+	margin-top: 25px;
+	text-decoration: none;
+	transition: 0.4s;
+}
+.button:HOVER {
+	background: #34495e;
+	color: #fff;
+}
+
+.popup{
+	background: rgba(0,0,0,0.6);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items:  center;
+	text-align: center;
+}
+
+.popup-content{
+	height: 250px;
+	width: 500px;
+	background: #f8c427;
+	padding: 20px;
+	borer-radius: 5px;
+	position: relative;
+}
+input{
+	margin: 20px auto;
+	display: block;
+	width: 50%;
+	padding: 8px;
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+.close{
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	background: #fff;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	box-shadow: 6px 6px 29px -4px rgba(0,0,0,0.75);
+	cursor: pointer;
+}
+
+
+
+
+.container1{
+	position: absolute;
+	top: 35%;
+	left: 75%;
+	transform: translate(-10%, -20%);
+	text-align: center;
+	
+}
+.container1 h1{
+	color: #400080;
+	font-size: 36px;
+	margin-bottom: 40px;
+}
+
+.button1{
+	background: #fff;
+	padding: 10px 15px;
+	color: #34495e;
+	font-weight: bolder;
+	text-transform: uppercase;
+	font-size: 18px;
+	border-radius: 5px;
+	box-shadow: 6px 6px 29px -4px rgba(0,0,0,0.75);
+	margin-top: 25px;
+	text-decoration: none;
+	transition: 0.4s;
+}
+.button1:HOVER {
+	background: #34495e;
+	color: #fff;
+}
+
+.popup1{
+	background: rgba(0,0,0,0.6);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items:  center;
+	text-align: center;
+}
+
+.popup-content1{
+	height: 250px;
+	width: 500px;
+	background: #f8c427;
+	padding: 20px;
+	borer-radius: 5px;
+	position: relative;
+}
+input{
+	margin: 20px auto;
+	display: block;
+	width: 50%;
+	padding: 8px;
+	border: 1px solid gray;
+	border-radius: 5px;
+}
+.close1{
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	background: #fff;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	box-shadow: 6px 6px 29px -4px rgba(0,0,0,0.75);
+	cursor: pointer;
+}
+
+
+#profile{
+	font-weight: bolder;
+	position: relative;
+	text-align: center;
+	transform: translate(50%,250%);
+}

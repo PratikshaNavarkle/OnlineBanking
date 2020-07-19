@@ -56,17 +56,6 @@ public class AdminRejectServlet extends HttpServlet {
 		try
 		{
 			//rd.searchRegister(accNum);
-			i=pd.deletePersonal(accNum);
-			if(i>0)
-			{
-				System.out.println("Personal Details deleted");
-				//response.sendRedirect("Home.jsp");
-			}
-			else
-			{
-				System.out.println("Personal details failed");
-			}
-			
 			i=ad.deleteAddress(accNum);
 			if(i>0)
 			{
@@ -109,7 +98,16 @@ public class AdminRejectServlet extends HttpServlet {
 			{
 				System.out.println("Register details failed");
 			}
-			
+			i=pd.deletePersonal(accNum);
+			if(i>0)
+			{
+				System.out.println("Personal Details deleted");
+				//response.sendRedirect("Home.jsp");
+			}
+			else
+			{
+				System.out.println("Personal details failed");
+			}
 			request.setAttribute("emailID", ID);
 			RequestDispatcher rs=request.getRequestDispatcher("EmailApproveServlet");
 			rs.forward(request, response);

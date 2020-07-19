@@ -89,5 +89,19 @@ public class PersonalDetails
 	public void setContact(long contact) {
 		this.contact = contact;
 	}
+
+	@Override
+	public String toString() {
+		return "PersonalDetails [accNo=" + accNo + ", firstName=" + firstName + ", middleName=" + middleName
+				+ ", lastName=" + lastName + ", email=" + email + ", gender=" + gender + ", dob=" + dob + ", contact="
+				+ contact + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
 		
+	
 }

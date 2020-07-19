@@ -77,5 +77,18 @@ public class AddressDetails
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
+
+	@Override
+	public String toString() {
+		return "AddressDetails [accNo=" + accNo + ", address=" + address + ", locality=" + locality + ", landmark="
+				+ landmark + ", city=" + city + ", state=" + state + ", pinCode=" + pinCode + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+	
 	
 }

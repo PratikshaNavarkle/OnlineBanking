@@ -1,3 +1,4 @@
+<%@page import="DbConnection.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.sql.*"%>
@@ -16,18 +17,20 @@
 <%
 try {
 	response.setContentType("text/html");
-	Class.forName("oracle.jdbc.OracleDriver");
+	//Class.forName("oracle.jdbc.OracleDriver");
 	//Connection to database
-	Connection con = DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE", "SYSTEM",
-			"Pr@tiksha");//thinn is a driver
+	//Connection con = DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE", "SYSTEM",
+		//	"Pr@tiksha");//thinn is a driver
+		DBConnection db=new DBConnection();
+		Connection con=db.myConnection();
 	PreparedStatement ps = con.prepareStatement("select * from Register");
 	ResultSet rs = ps.executeQuery();
 	PrintWriter pw = response.getWriter();
 	pw.println(
-			"<html><body><table border='3' align='left' id='Tab'> <tr> <td>Account Number</td> <td>First Name</td> <td>Middle Name</td> <td>Last Name</td> <td>Email</td> <td>Gender</td> <td>Date of Birth</td> <td>Contact Number</td> <td>City</td> <td>Account Type</td> <td>Aadhar Number</td> <td>PAN Number</td> </tr> ");
+			"<html><body><table border='3' align='left' id='Tab'> <tr> <td>Account Number</td> <td>First Name</td> <td>Middle Name</td> <td>Last Name</td> <td>Email</td> <td>Gender</td> <td>Date of Birth</td> <td>Contact Number</td> <td>City</td> <td>Account Type</td> <td>Balance</td> <td>Aadhar Number</td> <td>PAN Number</td> </tr> ");
 	while (rs.next()) {
 		pw.println("<tr><td>" + rs.getLong(1)+ "</td><td>" + rs.getString(2) + "</td><td>" + rs.getString(3) + "</td><td>" + rs.getString(4)
-				+ "</td><td>" +rs.getString(5)+"</td><td>" +rs.getString(6)+"</td><td>" +rs.getDate(7)+"</td><td>" +rs.getLong(8)+"</td><td>" +rs.getString(12)+"</td><td>"+rs.getString(15)+"</td><td>" +rs.getLong(17)+"</td><td>" +rs.getString(18)+"</td> </tr>");
+				+ "</td><td>" +rs.getString(5)+"</td><td>" +rs.getString(6)+"</td><td>" +rs.getDate(7)+"</td><td>" +rs.getLong(8)+"</td><td>" +rs.getString(12)+"</td><td>"+rs.getString(15)+"</td><td>"+rs.getDouble(16)+"</td><td>" +rs.getLong(18)+"</td><td>" +rs.getString(19)+"</td> </tr>");
 	}
 	pw.println(" </table></body></html>");
 } catch (Exception e) {

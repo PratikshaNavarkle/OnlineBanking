@@ -7,7 +7,7 @@
 <title>FAQs</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-<link rel="stylesheet" href="FAQ.css">
+<link rel="stylesheet" href="CSS/FAQ.css">
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 
 		<div class="right_area">
 
-			<a href="Login.jsp" class="logout_btn">Logout</a>
+			<a href="Home.jsp" class="logout_btn">Logout</a>
 		</div>
 	</header>
 
@@ -44,22 +44,23 @@
 		<a href="MyAccount.jsp"><i class="fa fa-id-card"></i><span>My
 				Account</span></a> <a href="faq.jsp"><i class="fa fa-info-circle"></i><span>FAQs</span></a>
 		<a href="Settings"><i class="fa fa-cog"></i><span>Account
-				Settings</span></a> <a href="accstmt.jsp"><i class="fa fa-history"></i><span>Account
-				Statement</span></a>
+				Settings</span></a> <a href="AccsStatement.jsp"><i class="fa fa-history"></i><span>Account
+				Statement</span></a><a href="FundTransfer.jsp"><i class="fa fa-history"></i><span>Fund
+				Transfer</span></a>
 
-	<p id="q1">Q1.How safe is the ABC Bank?</p>
-	<p id="a1">ANS: It consists of multiple layers of security for the
-		accounts and the vaults.</p>
-	<br>
-	<p id="q2">Q2.What special facilities does the ABC Bank provide?</p>
-	<p id="a2">ANS: ABC Bank provides multiple facilities like more
-		interest on FDs and also senior citizen benefits.</p>
-	<br>
-	<p id="q3">Q3.Are there any mutual fund investment options?</p>
-	<p id="a3">ANS: ABC Bank does provides the clients with mutual fund
-		investment options also provide contacts with a personal bank
-		affiliated broker.</p>
-	<br>
+		<p id="q1">Q1.How safe is the ABC Bank?</p>
+		<p id="a1">ANS: It consists of multiple layers of security for the
+			accounts and the vaults.</p>
+		<br>
+		<p id="q2">Q2.What special facilities does the ABC Bank provide?</p>
+		<p id="a2">ANS: ABC Bank provides multiple facilities like more
+			interest on FDs and also senior citizen benefits.</p>
+		<br>
+		<p id="q3">Q3.Are there any mutual fund investment options?</p>
+		<p id="a3">ANS: ABC Bank does provides the clients with mutual
+			fund investment options also provide contacts with a personal bank
+			affiliated broker.</p>
+		<br>
 	</div>
 </body>
 </html>
