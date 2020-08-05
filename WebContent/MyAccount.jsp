@@ -119,8 +119,8 @@
 		ResultSet rs = null;
 		Class.forName("oracle.jdbc.OracleDriver");
 		//step2 connection to DB
-		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@Pratiksha:1521:XE", "SYSTEM",
-				"Pr@tiksha");
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system",
+				"neha123");
 		PreparedStatement ps = con.prepareStatement("select * from Personal_Details where accno=?");
 		ps.setLong(1, ID);
 		rs = ps.executeQuery();

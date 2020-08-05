@@ -69,8 +69,8 @@ long accNo=Long.parseLong(s);
 <jsp:useBean id="dlist" class="java.util.ArrayList"/>
 
 	<sql:setDataSource var="db" driver="oracle.jdbc.OracleDriver"
-		url="jdbc:oracle:thin:@Pratiksha:1521:XE" user="SYSTEM"
-		password="Pr@tiksha" />
+		url="jdbc:oracle:thin:@localhost:1521:XE" user="system"
+		password="neha123" />
 		
 		<sql:query dataSource="${db}" var="rs">  
 SELECT to_char(trDateTime,'mm-dd-yyyy hh24:mi:ss') as newDate from Account_Statements where accno=<%=accNo %>

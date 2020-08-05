@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script src="state.js" ></script>
 <script>
 			$(function() {
 		        	$( "#datepicker" ).datepicker({
@@ -137,12 +138,16 @@
           <input  required autocomplete="off" onkeydown="return nospace(event)" pattern="^[0-9]{6}$" title="please enter 6 digits only" type="number" placeholder="Pin Code" name="pin" id="pin"  class="input">
        </div> 
        <div class="inputfield">
-          <label for="city">City</label>
-          <input required type="text" placeholder="Pune" title="please enter alphabets only. e.g. Pune "  autocomplete="off" onkeydown="return nospace(event)" name="city" id="city" pattern="^[A-Za-z]*$" class="input">
+       <label for="state">State</label>
+          <select name="state" id="state" style="width: 400px" size="1">
+          <option value="" selected="selected">Please select</option>
+          </select>
        </div> 
        <div class="inputfield">
-          <label for="state">State</label>
-          <input required type="text" placeholder="Maharashtra" title="please enter alphabets only. e.g. Maharashtra "  autocomplete="off" onkeydown="return nospace(event)" name="state" id="state" pattern="^[A-Za-z]*$" class="input">
+          <label for="city">City</label>
+          <select name="city" id="city" style="width: 400px" size="1" required>
+			<option value="" selected="selected">Please select State first</option>
+			</select>
        </div> 
        <div class="inputfield">
           <label>Account type</label>

@@ -84,7 +84,6 @@ public class UserLoginDao implements DummyDetailsInterface
 		return acc;
 	}
 
-	@Override
 	public int addDummy(DummyDetails d) 
 	{
 		con=db.myConnection();

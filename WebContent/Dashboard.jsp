@@ -49,6 +49,7 @@ long ID=Long.parseLong(s);
 <a href="#"><i class="fa fa-cog"></i><span>Account Settings</span></a>
 <a href="AccsStatement.jsp"><i class="fa fa-history"></i><span>Account Statement</span></a>
 <a href="FundTransfer.jsp"><i class="fa fa-history"></i><span>Fund Transfer</span></a>
+<a href="AddPayee.jsp"><i class="fa fa-history"></i><span>Add Payee</span></a>
 
 
 <div id="loan">

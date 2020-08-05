@@ -41,18 +41,17 @@ public class RegisterDao implements RegisterInterface
 		//System.out.println("Connection :"+con);
 	}
 */
-	@Override
 	public long addRegister(Regsiter r)
 	{
 		int i=0;
-		Long accNo=100000000000L;
+		Long accNo=100000000071L;
 		con=d.myConnection();
 		try 
 		{
 			//myConnection();
 			//System.out.println("Before sequence");
 			
-			String sql="select accNo.nextval from Register";
+			//String sql="select accNo.nextval from Register";
 			//System.out.println("first");
 			ps=con.prepareStatement("select accNo.nextval from Register");
 			//System.out.println("2");
@@ -60,7 +59,7 @@ public class RegisterDao implements RegisterInterface
 			//System.out.println("3");
 			if(rs.next())
 			{
-				//System.out.println("4");
+				System.out.println("sequ no :"+accNo);
 				accNo=rs.getLong(1);
 				//System.out.println("5");
 			}
@@ -122,14 +121,12 @@ public class RegisterDao implements RegisterInterface
 		return accNo;
 	}
 
-	@Override
 	public List<Regsiter> getAllRegister() 
 	{
 
 		return null;
 	}
 
-	@Override
 	public int deleteRegister(long accNo) 
 	{
 		int i=0;
@@ -165,7 +162,6 @@ public class RegisterDao implements RegisterInterface
 		return i;
 	}
 
-	@Override
 	public int searchRegister(long accNo) 
 	{
 		con=d.myConnection();	
@@ -232,7 +228,6 @@ public class RegisterDao implements RegisterInterface
 		return i;
 	}
 
-	@Override
 	public Regsiter updateRegsiter(Regsiter r) 
 	{
 

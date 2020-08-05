@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.model.BeneficiaryDetails;
+import com.model.MyBank;
 import com.model.Regsiter;
 
 import DbConnection.DBConnection;
@@ -72,5 +73,49 @@ public class BeneficiaryDao {
 		}
 
 		return i;
+	}
+	public MyBank getBenfBank(long accNo)
+	{
+		String bank,ifsc;
+		MyBank mb=new MyBank();
+		con=d.myConnection();
+		//List<AccountDetails> lst=null;
+		try
+		{
+			//System.out.println("Inside try");
+			//myConnection();
+
+			PreparedStatement ps = con.prepareStatement("select bankName,ifscCode from Beneficiary_Details where benfAccNo=?");
+			ps.setLong(1, accNo);
+			ResultSet rs = ps.executeQuery();
+
+			//	System.out.println("After Crt");
+			while (rs.next()) 
+			{
+				bank=rs.getString(1);
+				ifsc=rs.getString(2);
+				mb.setBankName(bank);
+				mb.setIFSC(ifsc);
+				//System.out.println("In RS");
+			}
+			//lst=new ArrayList<AccountDetails>();
+			//lst.add(ad);
+			//s.setAttribute("cart",lst);
+			//response.sendRedirect("MyProfile.jsp");	
+		}
+		catch(Exception e)
+		{
+			System.out.println("In get benfAccount bank\t"+e);
+		}
+		finally{
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return mb;
 	}
 }

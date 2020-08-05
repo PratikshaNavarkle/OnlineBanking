@@ -38,7 +38,6 @@ public class AccountDetailsDao implements AccountDetailsInterface
 	}
 */
 
-	@Override
 	public int addAccount(AccountDetails acc) {
 		int i=0;
 		con=db.myConnection();
@@ -72,7 +71,6 @@ public class AccountDetailsDao implements AccountDetailsInterface
 		return i;
 	}
 
-	@Override
 	public int deleteAccount(long accNo) {
 		int i=0;
 		con=db.myConnection();
@@ -103,7 +101,6 @@ public class AccountDetailsDao implements AccountDetailsInterface
 		return i;
 	}
 
-	@Override
 	public String searchEmail(long accNo) 
 	{
 		con=db.myConnection();
@@ -136,7 +133,6 @@ public class AccountDetailsDao implements AccountDetailsInterface
 		return email;
 	}
 
-	@Override
 	public String searchPassword(long accNo) {
 		String password=null;
 		con=db.myConnection();
@@ -168,7 +164,6 @@ public class AccountDetailsDao implements AccountDetailsInterface
 		return password;
 	}
 
-	@Override
 	public int updateAccountBalance(long accNo,double bal) 
 	{
 		con=db.myConnection();
@@ -189,7 +184,6 @@ public class AccountDetailsDao implements AccountDetailsInterface
 	}
 
 
-	@Override
 	public double getAccountBalance(long accNo)
 	{
 		double balance=0;
@@ -232,7 +226,6 @@ public class AccountDetailsDao implements AccountDetailsInterface
 	}
 
 
-	@Override
 	public List<AccountDetails> getAllAccounts(long acNo) 
 	{
 		con=db.myConnection();

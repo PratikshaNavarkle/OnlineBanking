@@ -36,7 +36,6 @@ public class DocumentDetailsDao implements DocumentDetailsInterface
 	}
 
 */	
-	@Override
 	public int addDocument(DocumentDetails d)
 	{
 		con=db.myConnection();
@@ -69,13 +68,11 @@ public class DocumentDetailsDao implements DocumentDetailsInterface
 		return i;
 	}
 
-	@Override
 	public List<DocumentDetails> getAllDocumentDetails() 
 	{
 		return null;
 	}
 
-	@Override
 	public int deleteDocument(long accNo)
 	{
 		con=db.myConnection();
@@ -107,13 +104,11 @@ public class DocumentDetailsDao implements DocumentDetailsInterface
 		return i;
 	}
 
-	@Override
 	public DocumentDetails searchDocument(long accNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public DocumentDetails updateDocument(DocumentDetails d) {
 		// TODO Auto-generated method stub
 		return null;

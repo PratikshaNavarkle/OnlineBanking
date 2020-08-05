@@ -36,7 +36,6 @@ public class PersonalDetailsDao implements PersonalDetailsInterface
 		//System.out.println("Connection :"+con);
 	}
 */
-	@Override
 	public int addPersonal(PersonalDetails p) 
 	{
 		con=db.myConnection();
@@ -74,13 +73,11 @@ public class PersonalDetailsDao implements PersonalDetailsInterface
 		return i;
 	}
 
-	@Override
 	public List<PersonalDetails> getAllPersonalDetails() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public int deletePersonal(long accNo) 
 	{
 		con=db.myConnection();
@@ -116,7 +113,6 @@ public class PersonalDetailsDao implements PersonalDetailsInterface
 		return i;
 	}
 
-	@Override
 	public String searchPersonal(long accNo) 
 	{
 		con=db.myConnection();
@@ -141,13 +137,11 @@ public class PersonalDetailsDao implements PersonalDetailsInterface
 		return firstName;
 	}
 
-	@Override
 	public PersonalDetails updatePersonal(PersonalDetails p) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public String searchName(long accNo) 
 	{
 		con=db.myConnection();

@@ -36,7 +36,6 @@ public class AddressDetailsDao implements AddressDetailsInterface
 	}
 */
 
-	@Override
 	public int addAddress(AddressDetails a) 
 	{
 		con=db.myConnection();
@@ -73,13 +72,11 @@ public class AddressDetailsDao implements AddressDetailsInterface
 		return i;
 	}
 
-	@Override
 	public List<AddressDetails> getAllAddressDetails() {
 		
 		return null;
 	}
 
-	@Override
 	public int deleteAddress(long accNo) {
 		int i=0;
 		con=db.myConnection();
@@ -110,13 +107,11 @@ public class AddressDetailsDao implements AddressDetailsInterface
 		return i;
 	}
 
-	@Override
 	public AddressDetails searchAddress(long accNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public AddressDetails updateAddress(AddressDetails a) {
 		// TODO Auto-generated method stub
 		return null;

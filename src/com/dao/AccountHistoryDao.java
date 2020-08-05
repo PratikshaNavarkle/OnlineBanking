@@ -48,7 +48,6 @@ public class AccountHistoryDao implements AccountHistoryInterface
 		
 	}
 	
-	@Override
 	public int addHistory(AccountHistory a) {
 		int i=0;
 		con=db.myConnection();
@@ -59,7 +58,7 @@ public class AccountHistoryDao implements AccountHistoryInterface
 			ps=con.prepareStatement("insert into Account_Statements values(?,?,?,?,?,?,?,?,?,?,?)");
 			//System.out.println("before");
 			ps.setLong(1, a.getAccNo());
-			ps.setLong(2, a.getAccNo());
+			ps.setLong(2, a.getRecipientAccNo());
 			ps.setString(3, a.getReceipientName());
 			ps.setString(4, a.getMb().getBankName());
 			ps.setString(5, a.getMb().getIFSC());
@@ -92,7 +91,6 @@ public class AccountHistoryDao implements AccountHistoryInterface
 		return i;
 	}
 
-	@Override
 	public List<AccountHistory> getAllHistory(long acNo) 
 	{
 		con=db.myConnection();
